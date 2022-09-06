@@ -1,8 +1,13 @@
-import React from "react";
+import TestComponent from './TestComponent';
+import Login from './login';
 
 function App() {
   return (
-    <div></div>
+    <div className="App">
+      {/* RENDER YOU COMPONENT HERE */}
+      <TestComponent></TestComponent>
+      <Login></Login>
+    </div>
   );
 }
 
