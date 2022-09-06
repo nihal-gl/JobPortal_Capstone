@@ -1,10 +1,10 @@
-import PranjalDummyComp from "./components/PranjalDummyComp";
+import TestComponent from './TestComponent';
 
 function App() {
   return (
     <div className="App">
       {/* RENDER YOU COMPONENT HERE */}
-      <PranjalDummyComp></PranjalDummyComp>
+      <TestComponent></TestComponent>
     </div>
   );
 }
