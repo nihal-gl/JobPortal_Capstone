@@ -4,6 +4,8 @@ import Login from './login';
 import PranjalDummyComp from './PranjalDummyComp';
 import TestComponentNihal from './TestComponentNihal'
 import Shashwatcomponent from './ShashwatComponent/Shashwatcomponent';
+import TestRachit from './TestRachit';
+
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <PranjalDummyComp></PranjalDummyComp>
       <TestComponentNihal></TestComponentNihal>
       <Shashwatcomponent></Shashwatcomponent>
+
+      <TestRachit></TestRachit>
     </div>
   );
 }
