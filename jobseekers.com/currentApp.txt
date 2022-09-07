@@ -1,11 +1,17 @@
+import React from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Employee from "./Components/employee";
+
 function App() {
   return (
-    <div className="App">
-      {/* RENDER YOU COMPONENT HERE */}
-      <h1>Go get a job !</h1>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/employee" element={<Employee></Employee>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
 export default App;
-
