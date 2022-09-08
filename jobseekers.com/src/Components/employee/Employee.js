@@ -1,7 +1,7 @@
 import React from "react";
 import { FaLinkedinIn, FaTwitter, FaGithub } from "react-icons/fa";
-import { DiCssTricks} from "react-icons/di";
-import "../Components/employee.css"
+import { DiCssTricks } from "react-icons/di";
+import "./employee.css";
 import { Link } from "react-router-dom";
 
 const Employee = () => {
@@ -23,46 +23,43 @@ const Employee = () => {
                 <h5>Olivia Mitchell</h5>
                 <h6> Web development</h6>
                 <a href=""> Your Resume Link</a>
-                
-              
               </div>
             </div>
-    
+
           </div>
           <div className="row">
             {/* //left side */}
             <div className="col-md-4">
               <div className="skils">
-                <h4><DiCssTricks/>  Skills</h4>
-                
-                    <p className="skils-info">
-                      Software: MATLAB, AutoCAD, Microsoft Office, SolidWorks
-                      Machines: CNC, Lathes
-                    </p>
-                 
-
-              </div><br/>
+                <h4><DiCssTricks />  Skills</h4>
+                <p className="skils-info">
+                  Software: MATLAB, AutoCAD, Microsoft Office, SolidWorks
+                  Machines: CNC, Lathes
+                </p>
+              </div>
+              <br />
               <div className="profile-work">
-              <h4>My Social Profile</h4>
+                <h4>My Social Profile</h4>
                 <a className="fa" href="">
                   <FaLinkedinIn />
                 </a>
-                
+
                 <a className="fa" href="">
                   <FaTwitter />
                 </a>
-                
+
                 <a className="fa" href="">
                   <FaGithub />
                 </a>
               </div>
             </div>
+
             <div className="col-md-8 about-info">
               <div className="tab-content profile-tab">
-              <ul class="nav nav-tabs" role="tablist">
-                  <li class="nav-item">
+                <ul className="nav nav-tabs" role="tablist">
+                  <li className="nav-item">
                     <a
-                      class="nav-link active"
+                      className="nav-link active"
                       id="home-tab"
                       data-toggle="tab"
                       aria-current="page"
@@ -72,8 +69,8 @@ const Employee = () => {
                       About
                     </a>
                   </li>
-                  </ul>
-                  <br/>
+                </ul>
+                <br />
                 <div className="row">
                   <div className="col-md-4">
                     <label>Email:</label>
@@ -113,7 +110,7 @@ const Employee = () => {
                       Laser River Level Gage. Used low-powered laser diode,
                       Raspberry Pi, and 3G LTE Base HAT to construct an
                       inexpensive river-level gauge. Sold and deployed 50+.
-                    
+
                     </p>
                   </div>
                   {/* <div className="col-md-4">

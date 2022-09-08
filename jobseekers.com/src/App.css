@@ -3,12 +3,5 @@ body{
     min-width: 100vw;
     min-height: 100vh;
     overflow-x: hidden;
-    
-    
     font-style: normal;
-}
-
-h1{
-    font-size: 60px;
-    font-weight: 600;
 }

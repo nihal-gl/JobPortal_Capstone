@@ -28,7 +28,8 @@ const Footer = () => {
                     </div>
                     <div className="col-xl-4 col-md-4 mb-30">
                         <div className="single-cta">
-                            <i className="far fa-envelope-open"></i>
+                        <i className=" fas fa-solid fa-envelope"></i>
+                            {/* <i className="far fa-envelope-open"></i> */}
                             <div className="cta-text">
                                 <h4>Mail us</h4>
                                 <span>mail@info.com</span>
