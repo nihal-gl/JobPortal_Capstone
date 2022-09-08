@@ -50,8 +50,8 @@ const Navbar = () => {
           <li>
             <NavLink className="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" to="/signup">Signup</NavLink>
           </li>
-        </ul> 
-        
+        </ul>
+
       </nav>
     </>
   )
