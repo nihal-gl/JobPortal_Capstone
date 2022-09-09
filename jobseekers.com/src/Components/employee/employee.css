@@ -5,6 +5,11 @@
   padding-right: 20px;
 }
 
+@media print {
+  .dontPrint {display: none !important;}
+}
+
+
 .profile-work,
 .skils {
   background-color: white;

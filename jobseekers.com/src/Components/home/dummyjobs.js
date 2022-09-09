@@ -34,6 +34,12 @@ const dummyjobs=[
         companyName: "Apple",
         role: "IOS Developer",
         requirements: "Bachelor's degree in computer science or software engineering. Objective-C, Swift, and Cocoa Touch."
+    },
+    {
+        id:7,
+        companyName: "Apple",
+        role: "IOS Developer",
+        requirements: "Bachelor's degree in computer science or software engineering. Objective-C, Swift, and Cocoa Touch."
     }
 ]
 

@@ -82,11 +82,13 @@ a.btn.btn-bd-download.d-none.d-lg-inline-block.mb-3.mb-md-0.ml-md-3.active {
 }
 
 .bd-navbar .navbar-nav .nav-link {
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
   color: #ffffff;
 
 }
+
+ul.nav li.dropdown:hover ul.dropdown-menu{ display: block; }
 
 .bd-navbar .navbar-nav .nav-link:hover {
   color: #61dafb;
@@ -97,3 +99,28 @@ a.btn.btn-bd-download.d-none.d-lg-inline-block.mb-3.mb-md-0.ml-md-3.active {
 .navbar-nav-scroll {
   margin-left: 20px;
 }
+
+ .btn-custom {
+  background: white;
+  color: rgb(40, 44, 52);
+  border-color: #61dafb;
+}
+
+.btn-custom:hover {
+  background: white;
+  color: rgb(40, 44, 52);
+  border-color: #61dafb;
+  box-shadow: 61dafb;
+}
+.btn-custom.active {
+  background: white;
+  color: rgb(40, 44, 52);
+  border-color: #61dafb;
+  box-shadow: 61dafb;
+}
+
+.btn-sm {
+  padding: 8px 22px;
+}
+
+
