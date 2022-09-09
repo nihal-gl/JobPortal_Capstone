@@ -1,11 +1,24 @@
 import './JobsListing.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faIndianRupeeSign, faLocationDot, faFileLines, faClockRotateLeft, faStar } from '@fortawesome/free-solid-svg-icons'
-import data from '../../jobs.json'
+// import data from '../../jobs.json'
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from '../../firebase/config';
 
 const JobsListing = () => {
-    const [jobs, setJobs] = useState(data);
+    const [jobs, setJobs] = useState([]);
+
+    useEffect(()=>{
+        const unsub = onSnapshot(collection(db, 'jobs'), (querySnapshot)=>{
+            let tempArr = [];
+            querySnapshot.forEach((item)=>{
+                tempArr.push({...item.data(), id: item.id})
+            });
+            setJobs(tempArr);
+        })
+
+    },[])
 
     //used for setting the filters
     const [experience, setExperience] = useState(10);
@@ -30,7 +43,7 @@ const JobsListing = () => {
         setLocation("all"); // setting initial value of location i.e., all
 
         setExperience(e.target.value);
-        const filteredJob = data.filter((item) => parseInt(item.exp, 10) <= e.target.value);
+        const filteredJob = jobs.filter((item) => parseInt(item.exp, 10) <= e.target.value);
         console.log(filteredJob);
         setJobs(filteredJob);
     }
@@ -39,15 +52,15 @@ const JobsListing = () => {
         setExperience(10);  // setting initial value for experience to 10
 
         if (key === 'remote') {
-            const filteredJob = data.filter((item) => item.location[0] === 'Remote')
+            const filteredJob = jobs.filter((item) => item.location[0] === 'Remote')
             console.log(filteredJob);
             setJobs(filteredJob);
         } else if (key === 'office') {
-            const filteredJob = data.filter((item) => item.location[0] !== 'Remote')
+            const filteredJob = jobs.filter((item) => item.location[0] !== 'Remote')
             console.log(filteredJob);
             setJobs(filteredJob);
         } else if (key === 'all') {
-            setJobs(data);
+            setJobs(jobs);
         }
     }
     const handleCheckBox = (e, key) => {
@@ -56,40 +69,40 @@ const JobsListing = () => {
 
         if (e.target.checked) {
             if (key === "0to3") {
-                const filterJob = data.filter((item) => item.ctc <= 3)
+                const filterJob = jobs.filter((item) => item.ctc <= 3)
                 setJobs(filterJob);
                 setSalaryRadio(key);
             }
             if (key === "3to5") {
                 //item.ctc === 0 --> not disclosed, between 3 and 5
-                const filterJob = data.filter((item) => (item.ctc >= 3 && item.ctc <= 5) || item.ctc == 0)
+                const filterJob = jobs.filter((item) => (item.ctc >= 3 && item.ctc <= 5) || item.ctc == 0)
                 setJobs(filterJob);
                 setSalaryRadio(key);
             }
             if (key === "5to10") {
                 //item.ctc === 0 --> not disclosed, between 5 and 10
-                const filterJob = data.filter((item) => (item.ctc >= 5 && item.ctc <= 10) || item.ctc == 0)
+                const filterJob = jobs.filter((item) => (item.ctc >= 5 && item.ctc <= 10) || item.ctc == 0)
                 setJobs(filterJob);
                 setSalaryRadio(key);
             }
             if (key === "10to15") {
                 //item.ctc === 0 --> not disclosed, between 10 and 15
-                const filterJob = data.filter((item) => (item.ctc >= 10 && item.ctc <= 15) || item.ctc == 0)
+                const filterJob = jobs.filter((item) => (item.ctc >= 10 && item.ctc <= 15) || item.ctc == 0)
                 setJobs(filterJob);
                 setSalaryRadio(key);
             }
             if (key === "15plus") {
                 //item.ctc === 0 --> not disclosed
-                const filterJob = data.filter((item) => item.ctc >= 15 || item.ctc == 0)
+                const filterJob = jobs.filter((item) => item.ctc >= 15 || item.ctc == 0)
                 setJobs(filterJob);
                 setSalaryRadio(key);
             }
             if (key === 'all') {
-                setJobs(data);
+                setJobs(jobs);
                 setSalaryRadio(key);
             }
         } else {
-            setJobs(data);
+            setJobs(jobs);
         }
     }
 
