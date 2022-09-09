@@ -1,15 +1,11 @@
 import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Signimg from './Signimg'
-import Header from './Header'
-
-
+import Signimg from '../signup/Signimg'
+import './login.css';
 
 
 const Login = () => {
-
-    
 
     const [inputval, setInputval] = useState({
         email: "",
@@ -74,7 +70,7 @@ const Login = () => {
 
                     localStorage.setItem("user_login", JSON.stringify(userlogin))
 
-                    
+
                 }
             }
         }
@@ -83,8 +79,7 @@ const Login = () => {
 
     return (
         <>
-        <Header/>
-            <div className="container mt-3">
+            <div className="container loginContainer">
                 <section className='d-flex justify-content-between'>
                     <div className="left_data mt-3 p-5" style={{ width: "100%" }}>
                         <h3 className='text-center col-lg-6'>Sign in</h3>
@@ -103,11 +98,11 @@ const Login = () => {
                                 Submit
                             </Button>
                         </Form>
-                    
+
                     </div>
                     <Signimg></Signimg>
                 </section>
-                
+
             </div>
         </>
     )

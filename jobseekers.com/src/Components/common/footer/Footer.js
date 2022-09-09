@@ -10,7 +10,7 @@ const Footer = () => {
                 <div className="row">
                     <div className="col-xl-4 col-md-4 mb-30">
                         <div className="single-cta">
-                            <i className="fas fa-map-marker-alt"></i>
+                            <i className="fa fa-map-marker-alt"></i>
                             <div className="cta-text">
                                 <h4>Find us</h4>
                                 <span>Plot No.7, Oxygen Business Park SEZ, Tower, 3, Noida-Greater Noida Expy, Sector 144, Noida, Uttar Pradesh 201304</span>
@@ -19,7 +19,7 @@ const Footer = () => {
                     </div>
                     <div className="col-xl-4 col-md-4 mb-30">
                         <div className="single-cta">
-                            <i className="fas fa-phone"></i>
+                            <i className="fa fa-phone"></i>
                             <div className="cta-text">
                                 <h4>Call us</h4>
                                 <span> 9876453829</span>
@@ -28,7 +28,8 @@ const Footer = () => {
                     </div>
                     <div className="col-xl-4 col-md-4 mb-30">
                         <div className="single-cta">
-                            <i className="far fa-envelope-open"></i>
+                        <i className=" fa fa-solid fa-envelope"></i>
+                            {/* <i className="far fa-envelope-open"></i> */}
                             <div className="cta-text">
                                 <h4>Mail us</h4>
                                 <span>mail@info.com</span>
@@ -50,9 +51,9 @@ const Footer = () => {
                             </div>
                             <div className="footer-social-icon">
                                 <span>Follow us</span>
-                                <a href="#"><i className="fas fa-facebook-f facebook-bg"></i></a>
-                                <a href="#"><i className="fas fa-twitter twitter-bg"></i></a>
-                                <a href="#"><i className="fas fa-google-plus-g google-bg"></i></a>
+                                <a href="#"><i className="fa fa-facebook-f facebook-bg"></i></a>
+                                <a href="#"><i className="fa fa-twitter twitter-bg"></i></a>
+                                <a href="#"><i class="fa fa-brands fa-google-plus-g"></i></a>
                             </div>
                         </div>
                     </div>
@@ -86,7 +87,7 @@ const Footer = () => {
                             <div className="subscribe-form">
                                 <form action="#">
                                     <input type="text" placeholder="Email Address"/>
-                                    <button><i className="fab fa-telegram-plane"></i></button>
+                                    <button><i class="fa fa-brands fa-telegram"></i></button>
                                 </form>
                             </div>
                         </div>

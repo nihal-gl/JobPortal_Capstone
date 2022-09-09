@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import Header from './Header'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-
+import './signup.css';
 import Signimg from './Signimg'
+
 const Signup = () => {
 
   const [inputval,setInputval]=useState({
@@ -63,8 +63,7 @@ const Signup = () => {
 
     return (
         <>
-        <Header/>
-            <div className="container mt-3">
+            <div className="container mt-8 signup">
                 <section className='d-flex justify-content-between'>
                     <div className="left_data mt-3 p-3" style={{ width: "100%" }}>
                         <h3 className='text-center col-lg-6'>Sign Up</h3>

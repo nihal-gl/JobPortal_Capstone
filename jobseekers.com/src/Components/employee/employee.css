@@ -1,12 +1,18 @@
-body{
-    background-color: #F3F1F5;
+.emp-profile{
+  margin-top: 100px;
 }
-.fa{
-    padding-right: 20px;
+.profile-work .fa {
+  padding-right: 20px;
 }
 
-.profile-work,.skils {
-    background-color: white;
+@media print {
+  .dontPrint {display: none !important;}
+}
+
+
+.profile-work,
+.skils {
+  background-color: white;
   justify-items: center;
   align-items: center;
   min-height: 20px;
@@ -18,14 +24,13 @@ body{
   box-shadow: 0 4px 10px 0;
   border-radius: 5px;
   padding-right: 15px;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
+
 .profile-head {
-    background-color: white;
-    margin-top: 35px;
+  background-color: white;
+  margin-top: 35px;
   padding-top: 25px;
   padding-bottom: 25px;
-  font-family:cursive;
   font-size: 35px;
   font-weight: 55px;
   text-transform: uppercase;
@@ -36,11 +41,17 @@ body{
   text-align: center;
 
 }
-a{
-    font-size: medium;
+
+.profile-work, .profile-head a {
+  font-size: medium;
 }
 
-img {
+
+.profile-tab ul li a{
+  font-size: medium;
+}
+
+.profile-img {
   min-height: 55px;
   min-width: 55px;
   max-width: 300px;
@@ -51,20 +62,22 @@ img {
   border: 20px;
 }
 
-.tab-content{
-    background-color: white;
-    box-shadow: 0 4px 10px 0;
+.about-info .tab-content {
+  background-color: white;
+  box-shadow: 0 4px 10px 0;
   border-radius: 5px;
   padding: 25px;
   justify-items: center;
   align-items: center;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  
 }
-h4{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+
+.profile-work h4 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-.skils-info{
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-font-size: medium;
-padding-top: 10px;
+
+.skils-info {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: medium;
+  padding-top: 10px;
 }

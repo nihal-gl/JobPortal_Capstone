@@ -6,11 +6,14 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar fixed-top navbar-expand navbar-dark flex-column flex-md-row bd-navbar align ">
+
         <NavLink className="navbar-brand mr-0 mr-md-2" to="/user" aria-label="Bootstrap">
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"  ><title>User</title>
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" fill="currentColor"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87" fill="white"></path><path d="M16 3.13a4 4 0 0 1 0 7.75" fill="currentColor"></path>
           </svg>
         </NavLink>
+
+
         <div className="navbar-nav-scroll">
           <ul className="navbar-nav bd-navbar-nav flex-row">
             <li className="nav-item-mid">
@@ -23,11 +26,12 @@ const Navbar = () => {
               <NavLink className="nav-link " to="/explorejobs" >Jobs</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="#contact" >Contact</NavLink>
+              <NavLink className="nav-link" to="/updateprofile" >Update Profile</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="#faqs" >FAQs</NavLink>
+              <NavLink className=" btn btn-custom btn-sm" to="/addjob" ><i class="fa fa-solid fa-upload"></i>Post a Job</NavLink>
             </li>
+            {/* <a href="post-a-job.html" class="btn btn-custom btn-sm"><i class="mdi mdi-cloud-upload"></i> Post a Job</a> */}
           </ul>
         </div>
 
@@ -50,8 +54,8 @@ const Navbar = () => {
           <li>
             <NavLink className="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" to="/signup">Signup</NavLink>
           </li>
-        </ul> 
-        
+        </ul>
+
       </nav>
     </>
   )

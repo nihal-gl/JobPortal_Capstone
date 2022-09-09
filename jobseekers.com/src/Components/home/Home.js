@@ -9,7 +9,7 @@ const Home = () => {
       <div className='container-fluid margin'>
         <div >
           <div className='row'>
-            <div className='col-10'>
+            <div className='col-10 jobContainer'>
               {/* <div className="col-10 col-md-4 col-sm-6 mt-5"> */}
 
               {
@@ -192,6 +192,60 @@ const Home = () => {
                 <div className='row mt-5'>
                   <div className='content'>
                     <ul>
+                      <li>
+                        How we will make you land a job?
+                      </li>
+                      <li>
+                        How to prepare for MAANG?
+                      </li>
+                      <li>
+                        Top Recruiters
+                      </li>
+                      <li>
+                        24/4 Expert supports
+                      </li>
+                      <li>
+                        How we handle data
+                      </li>
+                      <li>
+                        Resume builder.
+                      </li>
+                      <li>
+                        How we will make you land a job?
+                      </li>
+                      <li>
+                        How to prepare for MAANG?
+                      </li>
+                      <li>
+                        Top Recruiters
+                      </li>
+                      <li>
+                        24/4 Expert supports
+                      </li>
+                      <li>
+                        How we handle data
+                      </li>
+                      <li>
+                        Resume builder.
+                      </li>
+                      <li>
+                        How we will make you land a job?
+                      </li>
+                      <li>
+                        How to prepare for MAANG?
+                      </li>
+                      <li>
+                        Top Recruiters
+                      </li>
+                      <li>
+                        24/4 Expert supports
+                      </li>
+                      <li>
+                        How we handle data
+                      </li>
+                      <li>
+                        Resume builder.
+                      </li>
                       <li>
                         How we will make you land a job?
                       </li>
