@@ -5,9 +5,12 @@ import { faBriefcase, faIndianRupeeSign, faLocationDot, faFileLines, faClockRota
 // import data from '../../jobs.json'
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from '../../firebase/config';
+import { useSelector } from 'react-redux';
 
 const JobsListing = () => {
     const [jobs, setJobs] = useState([]);
+    const {currUserId} = useSelector((state)=>state.users.value); // use this to get the current user's id
+    console.log(currUserId);
 
     useEffect(()=>{
         const unsub = onSnapshot(collection(db, 'jobs'), (querySnapshot)=>{
