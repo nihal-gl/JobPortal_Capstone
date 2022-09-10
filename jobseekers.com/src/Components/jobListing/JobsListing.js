@@ -31,9 +31,10 @@ const JobsListing = () => {
 
     //utility functions
     const calculateTime = (time) => {
-        const givenTime = new Date(time);
+        // const givenTime = new Date(time);
+        console.log();
         const currTime = new Date(Date.now())
-        const diffDays = parseInt((currTime - givenTime) / (1000 * 60 * 60 * 24), 10);
+        const diffDays = parseInt((currTime - time.toDate()) / (1000 * 60 * 60 * 24), 10);
         return diffDays;
     }
 
@@ -152,7 +153,7 @@ const JobsListing = () => {
                     <div className="row">
                         {
                             jobs.map((item) => (
-                                <div className="card">
+                                <div className="card job-listing-card">
                                     <div className='card-body'>
                                         <h4 className='job-title'>{item.title}</h4>
                                         <p className='company-name'>{item.company}</p>
