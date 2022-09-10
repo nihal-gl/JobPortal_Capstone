@@ -1,7 +1,9 @@
 .bd-navbar {
-  min-height: 4rem;
-  background-color: #20232a;
+  min-height: 6rem;
+  color: white;
+  background-color: #000000d9;
   box-shadow: 0 25px 20px -20px rgba(0, 0, 0, 0.4);
+  padding: 10px;
   font-size: 1.2em;
 }
 

@@ -11,6 +11,8 @@ import Addjob from "./Components/ADD_JOB/Addjob";
 import ProfileForm from "./Components/profile/ProfileForm";
 import Admin from "./Components/protected_routes/Admin";
 import User from "./Components/protected_routes/User"
+import About from "./Components/about/About"
+
 function App() {
 
   return (
@@ -19,7 +21,7 @@ function App() {
     <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>} /> {/* Public home page */}
-        <Route path="#about" /> {/* To be implemented */}
+        <Route path="/about" element={<About/>}/> 
         <Route path="/explorejobs" element={<User child={<JobsListing></JobsListing>}></User>} /> {/* List of jobs available */}
         <Route path="/user" element={<User child={<Employee></Employee>}></User>} />  {/* Users own profile */}
         <Route path="/login" element={<Login></Login>}/> {/* Public login page */}

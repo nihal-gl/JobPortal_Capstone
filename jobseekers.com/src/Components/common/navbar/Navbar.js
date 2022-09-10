@@ -14,7 +14,7 @@ const Navbar = () => {
         </NavLink>
 
 
-        <div className="navbar-nav-scroll">
+        <div className="navbar-nav-scroll text-uppercase f-17">
           <ul className="navbar-nav bd-navbar-nav flex-row">
             <li className="nav-item-mid">
               <NavLink className="nav-link " to="/">Home</NavLink>
