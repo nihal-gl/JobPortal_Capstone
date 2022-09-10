@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Signimg from '../signup/Signimg'
 import './login.css';
 import { useDispatch } from 'react-redux';
-import {setUserRole} from '../../useSlice';
+import {setUserId, setUserRole} from '../../useSlice';
 import { useSignin } from '../../hooks/useSignin'; // sign in hook
 import { getDocs, collection, query, where } from 'firebase/firestore';
 import { db } from '../../firebase/config';
@@ -94,10 +94,12 @@ const Login = () => {
                 const res = await getDocs(q); // return the matching document (User)
                 if (res.docs[0].data().role === 'admin') {
                     dispatch(setUserRole({role: 'admin'}));
+                    dispatch(setUserId({id: res.docs[0].id}))
                     console.log('navigate to admin pages');
                     navigate('/addjob') // intended page to route (admin dashboard )
                 } else {
                     dispatch(setUserRole({role: 'user'}));
+                    dispatch(setUserId({id: res.docs[0].id}))
                     console.log('navigate to user pages');
                     navigate('/explorejobs') // intended page to route (user dashboard)
                 }
