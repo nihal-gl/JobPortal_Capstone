@@ -9,20 +9,23 @@ import Signup from "./Components/signup/Signup";
 import Employee from "./Components/employee/Employee";
 import Addjob from "./Components/ADD_JOB/Addjob";
 import ProfileForm from "./Components/profile/ProfileForm";
-
+import Admin from "./Components/protected_routes/Admin";
+import User from "./Components/protected_routes/User"
 function App() {
+
   return (
     <BrowserRouter>
+   
     <Navbar></Navbar>
       <Routes>
-        <Route path="/" element={<Home></Home>} />
-        <Route path="#about" />
-        <Route path="/explorejobs" element={<JobsListing></JobsListing>} />
-        <Route path="/user" element={<Employee></Employee>} />
-        <Route path="/login" element={<Login></Login>} />
-        <Route path="/signup" element={<Signup></Signup>}/>
-        <Route path="/addjob" element={<Addjob></Addjob>}></Route>
-        <Route path="/updateprofile" element={<ProfileForm></ProfileForm>}></Route>
+        <Route path="/" element={<Home></Home>} /> {/* Public home page */}
+        <Route path="#about" /> {/* To be implemented */}
+        <Route path="/explorejobs" element={<User child={<JobsListing></JobsListing>}></User>} /> {/* List of jobs available */}
+        <Route path="/user" element={<User child={<Employee></Employee>}></User>} />  {/* Users own profile */}
+        <Route path="/login" element={<Login></Login>}/> {/* Public login page */}
+        <Route path="/signup" element={<Signup></Signup>}/> {/* public signup page */}
+        <Route path="/addjob" element={<Admin child={<Addjob></Addjob>}></Admin>}></Route> {/* Page for creating job */}
+        <Route path="/updateprofile" element={<User child={<ProfileForm></ProfileForm>}></User>}></Route> {/* Page for updating users own profile */}
       </Routes>
       <Footer></Footer>
     </BrowserRouter>

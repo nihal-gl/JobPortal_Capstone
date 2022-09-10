@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Signimg from '../signup/Signimg'
 import './login.css';
-
-
+import { useDispatch } from 'react-redux';
+import {setUserRole} from '../../useSlice';
+import { useSignin } from '../../hooks/useSignin'; // sign in hook
+import { getDocs, collection, query, where } from 'firebase/firestore';
+import { db } from '../../firebase/config';
 const Login = () => {
-
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { signin, isPending, error } = useSignin();
     const [inputval, setInputval] = useState({
         email: "",
         password: ""
@@ -32,11 +38,11 @@ const Login = () => {
 
     }
 
-    const addData = (e) => {
+    const addData = async (e) => {
         e.preventDefault();
 
-        const getuserArr = localStorage.getItem("useryoutube");
-        console.log(getuserArr);
+        // const getuserArr = localStorage.getItem("useryoutube");
+        // console.log(getuserArr);
 
         const { email, password } = inputval;
         if (email === "") {
@@ -57,6 +63,7 @@ const Login = () => {
             });
         } else {
 
+            /* // Using some other logic
             if (getuserArr && getuserArr.length) {
                 const userdata = JSON.parse(getuserArr);
                 const userlogin = userdata.filter((el, k) => {
@@ -73,7 +80,32 @@ const Login = () => {
 
                 }
             }
+            */
+
+        
+
+        try {
+            const status = await signin(email, password);
+            if(status) {
+                console.log(status);
+            } else {
+                console.log( "successfully logged in");
+                const q = query(collection(db, 'users'), where('email', '==', email));
+                const res = await getDocs(q); // return the matching document (User)
+                if (res.docs[0].data().role === 'admin') {
+                    dispatch(setUserRole({role: 'admin'}));
+                    console.log('navigate to admin pages');
+                    navigate('/addjob') // intended page to route (admin dashboard )
+                } else {
+                    dispatch(setUserRole({role: 'user'}));
+                    console.log('navigate to user pages');
+                    navigate('/explorejobs') // intended page to route (user dashboard)
+                }
+            }
+        } catch (err) {
+            console.log(err.message);
         }
+    }
 
     }
 
