@@ -2,18 +2,18 @@ import './JobsListing.css';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faIndianRupeeSign, faLocationDot, faFileLines, faClockRotateLeft, faStar } from '@fortawesome/free-solid-svg-icons'
-// import data from '../../jobs.json'
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, updateDoc, doc, arrayUnion } from "firebase/firestore";
 import { db } from '../../firebase/config';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 
 const JobsListing = () => {
     const [jobs, setJobs] = useState([]);
     const {currUserId} = useSelector((state)=>state.users.value); // use this to get the current user's id
-    console.log(currUserId);
 
     useEffect(()=>{
-        const unsub = onSnapshot(collection(db, 'jobs'), (querySnapshot)=>{
+        onSnapshot(collection(db, 'jobs'), (querySnapshot)=>{
             let tempArr = [];
             querySnapshot.forEach((item)=>{
                 tempArr.push({...item.data(), id: item.id})
@@ -27,10 +27,6 @@ const JobsListing = () => {
     const [experience, setExperience] = useState(10);
     const [salaryRadio, setSalaryRadio] = useState("all");
     const [location, setLocation] = useState("all");
-
-    const handleSaveJobs = (e) => {
-        console.log("save to be implemented");
-    }
 
     //utility functions
     const calculateTime = (time) => {
@@ -110,8 +106,48 @@ const JobsListing = () => {
         }
     }
 
+    const handleApply = (jobId) => {
+        // add job id in users collection
+        updateDoc(doc(db, 'users', currUserId), {
+            appliedJobs: arrayUnion(jobId)
+        }).then((res)=>{
+            console.log("job added to current user");
+        }).catch((err)=> {
+            console.log(err);
+        }) 
+        // add user id in jobs collection
+        updateDoc(doc(db, 'jobs', jobId), {
+            applicants: arrayUnion(currUserId)
+        }).then((res)=>{
+            console.log("applicant added to current job");
+        }).catch((err)=> {
+            console.log(err);
+        }) 
+    }
+    const handleSaveJobs = (jobId) => {
+        console.log("save to be implemented");
+        updateDoc(doc(db, 'users', currUserId), {
+            savedJobs: arrayUnion(jobId)
+        }).then((res)=>{
+            console.log("job added to saved job array");
+        }).catch((err)=> {
+            console.log(err);
+        }) 
+    }
+
+    const navigate = useNavigate();
+    const navigateToApplied = () => {
+        navigate('/appliedjobs');
+    }
+    const navigateToSaved = () => {
+        navigate('/savedjobs');
+    }
+
+
     return (
         <div className='parent-container'>
+            <button onClick={navigateToApplied}>Applied jobs</button>
+            <button onClick={navigateToSaved}>Saved jobs</button>
             <div className="filter-container">
                 <h4>Filter</h4>
                 <div>
@@ -181,7 +217,7 @@ const JobsListing = () => {
                                         <FontAwesomeIcon icon={faFileLines} />
                                         <span>{item.desc}</span>
                                         <br />
-                                        <button className='btn btn-primary apply-btn'>Apply</button>
+                                        <button onClick={()=>handleApply(item.id)} className='btn btn-primary apply-btn'>Apply</button>
                                         <div className='history-save'>
                                             <div className='history'>
                                                 <FontAwesomeIcon icon={faClockRotateLeft} />
@@ -190,7 +226,7 @@ const JobsListing = () => {
                                                     {calculateTime(item.postedOn)} DAYS AGO
                                                 </span>
                                             </div>
-                                            <div className='save' onClick={(e) => handleSaveJobs(e, item.id)}>
+                                            <div className='save' onClick={() => handleSaveJobs(item.id)}>
                                                 <FontAwesomeIcon icon={faStar} className="icon" />
                                                 <span>Save</span>
                                             </div>

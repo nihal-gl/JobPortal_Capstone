@@ -89,6 +89,7 @@ const Login = () => {
             if(status) {
                 console.log(status);
             } else {
+                
                 console.log( "successfully logged in");
                 const q = query(collection(db, 'users'), where('email', '==', email));
                 const res = await getDocs(q); // return the matching document (User)
