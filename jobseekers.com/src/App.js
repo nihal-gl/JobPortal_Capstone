@@ -13,6 +13,8 @@ import Admin from "./Components/protected_routes/Admin";
 import User from "./Components/protected_routes/User"
 import AppliedJobs from "./Components/appliedAndSavedJobs/AppliedJobs";
 import SavedJobs from "./Components/appliedAndSavedJobs/SavedJobs";
+import About from "./Components/about/About"
+import JobsAdmin from "./Components/jobsAdmin/JobsAdmin";
 function App() {
 
   return (
@@ -21,12 +23,13 @@ function App() {
     <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>} /> {/* Public home page */}
-        <Route path="#about" /> {/* To be implemented */}
+        <Route path="/about" element={<About/>}/> 
         <Route path="/explorejobs" element={<User child={<JobsListing></JobsListing>}></User>} /> {/* List of jobs available */}
         <Route path="/user" element={<User child={<Employee></Employee>}></User>} />  {/* Users own profile */}
         <Route path="/login" element={<Login></Login>}/> {/* Public login page */}
         <Route path="/signup" element={<Signup></Signup>}/> {/* public signup page */}
-        {/* <Route path="/addjob" element={<Admin child={<Addjob></Addjob>}></Admin>}></Route> Page for creating job */}
+        <Route path="/jobadmin" element={<Admin child={<JobsAdmin></JobsAdmin>}></Admin>}></Route>
+        <Route path="/addjob" element={<Admin child={<Addjob></Addjob>}></Admin>}></Route> {/* Page for creating job */}
         <Route path="/updateprofile" element={<User child={<ProfileForm></ProfileForm>}></User>}></Route> {/* Page for updating users own profile */}
         <Route path="/savedjobs" element={<User child={<SavedJobs></SavedJobs>}></User>}></Route>
         <Route path="/appliedjobs" element={<User child={<AppliedJobs></AppliedJobs>}></User>}></Route>

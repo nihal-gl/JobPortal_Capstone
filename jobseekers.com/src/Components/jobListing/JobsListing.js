@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const JobsListing = () => {
     const [jobs, setJobs] = useState([]);
+    const [data, setData] = useState([]);
     const {currUserId} = useSelector((state)=>state.users.value); // use this to get the current user's id
 
     useEffect(()=>{
@@ -19,22 +20,22 @@ const JobsListing = () => {
                 tempArr.push({...item.data(), id: item.id})
             });
             setJobs(tempArr);
+            setData(tempArr);
         })
 
     },[])
 
     //used for setting the filters
-    const [experience, setExperience] = useState(10);
+    const [experience, setExperience] = useState(0);
     const [salaryRadio, setSalaryRadio] = useState("all");
     const [location, setLocation] = useState("all");
 
     //utility functions
     const calculateTime = (time) => {
-        // const givenTime = new Date(time);
-        console.log();
-        // const currTime = new Date(Date.now())
-        // const diffDays = parseInt((currTime - time.toDate()) / (1000 * 60 * 60 * 24), 10);
-        // return diffDays;
+        const givenTime = new Date(time);
+        const currTime = new Date(Date.now())  
+        const diffDays = parseInt((currTime - givenTime) / (1000 * 60 * 60 * 24), 10);
+        return diffDays;
     }
 
     //Filtering functions
@@ -43,63 +44,63 @@ const JobsListing = () => {
         setLocation("all"); // setting initial value of location i.e., all
 
         setExperience(e.target.value);
-        const filteredJob = jobs.filter((item) => parseInt(item.exp, 10) <= e.target.value);
+        const filteredJob = data.filter((item) => parseInt(item.exp, 10) >= e.target.value);
         console.log(filteredJob);
         setJobs(filteredJob);
     }
     const handleLocation = (e, key) => {
         setSalaryRadio("all"); // setting initial value for radio btn i.e., all
-        setExperience(10);  // setting initial value for experience to 10
+        setExperience(0);  // setting initial value for experience to 10
 
         if (key === 'remote') {
-            const filteredJob = jobs.filter((item) => item.location[0] === 'Remote')
+            const filteredJob = data.filter((item) => item.location === 'Remote')
             console.log(filteredJob);
             setJobs(filteredJob);
         } else if (key === 'office') {
-            const filteredJob = jobs.filter((item) => item.location[0] !== 'Remote')
+            const filteredJob = data.filter((item) => item.location !== 'Remote')
             console.log(filteredJob);
             setJobs(filteredJob);
         } else if (key === 'all') {
-            setJobs(jobs);
+            setJobs(data);
         }
     }
     const handleCheckBox = (e, key) => {
-        setExperience(10);  // setting initial value for experience
+        setExperience(0);  // setting initial value for experience
         setLocation("all"); // setting initial value of location i.e., all
 
         if (e.target.checked) {
             if (key === "0to3") {
-                const filterJob = jobs.filter((item) => item.ctc <= 3)
+                const filterJob = data.filter((item) => item.ctc <= 3)
                 setJobs(filterJob);
                 setSalaryRadio(key);
             }
             if (key === "3to5") {
                 //item.ctc === 0 --> not disclosed, between 3 and 5
-                const filterJob = jobs.filter((item) => (item.ctc >= 3 && item.ctc <= 5) || item.ctc == 0)
+                const filterJob = data.filter((item) => (item.ctc >= 3 && item.ctc <= 5) || item.ctc == 0)
                 setJobs(filterJob);
                 setSalaryRadio(key);
             }
             if (key === "5to10") {
                 //item.ctc === 0 --> not disclosed, between 5 and 10
-                const filterJob = jobs.filter((item) => (item.ctc >= 5 && item.ctc <= 10) || item.ctc == 0)
+                const filterJob = data.filter((item) => (item.ctc >= 5 && item.ctc <= 10) || item.ctc == 0)
                 setJobs(filterJob);
                 setSalaryRadio(key);
             }
             if (key === "10to15") {
                 //item.ctc === 0 --> not disclosed, between 10 and 15
-                const filterJob = jobs.filter((item) => (item.ctc >= 10 && item.ctc <= 15) || item.ctc == 0)
+                const filterJob = data.filter((item) => (item.ctc >= 10 && item.ctc <= 15) || item.ctc == 0)
                 setJobs(filterJob);
                 setSalaryRadio(key);
             }
             if (key === "15plus") {
                 //item.ctc === 0 --> not disclosed
-                const filterJob = jobs.filter((item) => item.ctc >= 15 || item.ctc == 0)
+                const filterJob = data.filter((item) => item.ctc >= 15 || item.ctc == 0)
                 setJobs(filterJob);
                 setSalaryRadio(key);
             }
             if (key === 'all') {
-                setJobs(jobs);
-                setSalaryRadio(key);
+                setJobs(data);
+                setSalaryRadio(key);    
             }
         } else {
             setJobs(jobs);
@@ -210,7 +211,7 @@ const JobsListing = () => {
                                             <li>
                                                 <FontAwesomeIcon icon={faLocationDot} />
                                                 {/* only 2 locations are permitted in json*/}
-                                                <span>{item.location.length > 1 ? item.location[0] + ", " + item.location[1] : item.location[0]}</span>
+                                                <span>{item.location}</span>
                                             </li>
                                         </ul>
 
