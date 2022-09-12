@@ -97,7 +97,11 @@ const Login = () => {
                     dispatch(setUserRole({role: 'admin'}));
                     dispatch(setUserId({id: res.docs[0].id}))
                     console.log('navigate to admin pages');
+<<<<<<< HEAD
+                    navigate('/adminpanel') // intended page to route (admin dashboard )
+=======
                     navigate('/jobadmin') // intended page to route (admin dashboard )
+>>>>>>> 74f888ec93d4ac2f9f487417ae7dacf3aafbf636
                 } else {
                     dispatch(setUserRole({role: 'user'}));
                     dispatch(setUserId({id: res.docs[0].id}))
