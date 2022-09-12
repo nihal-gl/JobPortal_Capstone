@@ -41,10 +41,9 @@ const JobsAdmin = () => {
 
     //utility functions
     const calculateTime = (time) => {
-        // const givenTime = new Date(time);
-        console.log();
+        const givenTime = new Date(time);
         const currTime = new Date(Date.now())
-        const diffDays = parseInt((currTime - time.toDate()) / (1000 * 60 * 60 * 24), 10);
+        const diffDays = parseInt((currTime - givenTime) / (1000 * 60 * 60 * 24), 10);
         return diffDays;
     }
 
@@ -145,7 +144,7 @@ const JobsAdmin = () => {
                                             <li>
                                                 <FontAwesomeIcon icon={faLocationDot} />
                                                 {/* only 2 locations are permitted in json*/}
-                                                <span>{item.location.length > 1 ? item.location[0] + ", " + item.location[1] : item.location[0]}</span>
+                                                <span>{item.location}</span>
                                             </li>
                                         </ul>
 
