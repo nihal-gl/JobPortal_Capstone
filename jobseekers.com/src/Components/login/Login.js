@@ -95,7 +95,7 @@ const Login = () => {
                 if (res.docs[0].data().role === 'admin') {
                     dispatch(setUserRole({role: 'admin'}));
                     console.log('navigate to admin pages');
-                    navigate('/addjob') // intended page to route (admin dashboard )
+                    navigate('/adminpanel') // intended page to route (admin dashboard )
                 } else {
                     dispatch(setUserRole({role: 'user'}));
                     console.log('navigate to user pages');

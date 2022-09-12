@@ -15,13 +15,51 @@ const Navbar = () => {
 
 
         <div className="navbar-nav-scroll text-uppercase f-17">
-          <ul className="navbar-nav bd-navbar-nav flex-row">
+          <ul className="navbar-nav bd-navbar-nav flex-row navigation-menu">
             <li className="nav-item-mid">
               <NavLink className="nav-link " to="/">Home</NavLink>
             </li>
+
+            {/*------------------------------------DROPDOWN---------------------------- */}
+
             <li className="nav-item">
               <NavLink className="nav-link " to="/about">About</NavLink>
-            </li>
+            </li> 
+
+            {/* <div class="dropdown">
+              <button
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown button
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div> */}
+
+            {/* <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Click Me!
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+              </li> */}
+
+            {/*------------------------------------DROPDOWN---------------------------- */}
+
+
+
             <li className="nav-item">
               <NavLink className="nav-link " to="/explorejobs" >Jobs</NavLink>
             </li>
