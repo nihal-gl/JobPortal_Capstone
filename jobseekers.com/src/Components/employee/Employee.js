@@ -77,22 +77,21 @@ export const Employee = () => {
                 <div className="skils">
                   <h4><DiCssTricks />  Skills</h4>
                   <p className="skils-info">
-                    Software: MATLAB, AutoCAD, Microsoft Office, SolidWorks
-                    Machines: CNC, Lathes
+                    {userData.skill}
                   </p>
                 </div>
                 <br />
                 <div className="profile-work">
                   <h4>My Social Profile</h4>
-                  <a className="fa" href={userData.linkedin}>
+                  <a className="fa" target='_blank' href={userData.linkedin}>
                     <FaLinkedinIn />
                   </a>
 
-                  <a className="fa" href={userData.twitter}>
+                  <a className="fa" target='_blank' href={userData.twitter}>
                     <FaTwitter />
                   </a>
 
-                  <a className="fa" href={userData.github}>
+                  <a className="fa" target='_blank' href={userData.github}>
                     <FaGithub />
                   </a>
                 </div>
