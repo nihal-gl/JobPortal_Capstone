@@ -37,7 +37,8 @@ const Addjob = () => {
             ctc: ctc,
             exp: exp,
             desc: desc,
-            location: location
+            location: location,
+            postedOn: Date.now() 
         });
       }
     
