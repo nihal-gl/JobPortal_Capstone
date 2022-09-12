@@ -61,6 +61,9 @@
   padding-bottom: 40px;
   border: 20px;
 }
+.profile-img img {
+  height: 280px;
+}
 
 .about-info .tab-content {
   background-color: white;

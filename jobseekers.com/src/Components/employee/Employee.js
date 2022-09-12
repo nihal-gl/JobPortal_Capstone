@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaLinkedinIn, FaTwitter, FaGithub } from "react-icons/fa";
 import { DiCssTricks } from "react-icons/di";
 import "./employee.css";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { onSnapshot, collection } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
 export const Employee = () => {
 
+  const {currUserId} = useSelector((state)=>state.users.value); // use this to get the current user's id
+  const [userData, setUserData] = useState();
+  // const [isLoading, setIsLoading] = useState(true);
+  let isLoading = true;
+  useEffect(()=>{
+    onSnapshot(collection(db, 'users'), (users)=>{
+        let tempArr = [];
+        users.forEach((user)=>{
+            if(user.id === currUserId) {
+              setUserData(user.data());
+            }
+        });
+    })
+
+},[])
+  console.log(userData);
+  if(userData !== undefined) isLoading = false;
   const onButtonClick = () => {
     // using Java Script method to get PDF file
     fetch('Olivia_Michel_Resume.pdf').then(response => {
@@ -22,22 +42,22 @@ export const Employee = () => {
 
 
     return (
-      <>
+      isLoading ? <h2>Loading...</h2> : <>
         <div className="container emp-profile">
           <form method="">
             <div className="row">
               <div className="col-md-4">
                 <div className="profile-img">
                   <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3v137qLuURE1ci8muGc-S9oUCBUDb5lSZycWWq6AgiMt445AF6KQwaD1RwS0FKCaf3RE&usqp=CAU"
+                    src={userData.photo}
                     alt=""
                   />
                 </div>
               </div>
               <div className="col-md-8">
                 <div className="profile-head">
-                  <h5>Olivia Mitchell</h5>
-                  <h6> Web development</h6>
+                  <h5>{userData.name}</h5>
+                  <h6> {userData.title}</h6>
                   <button className="btn btn-primary" onClick={onButtonClick}>
                     Download Resume
                   </button>
@@ -57,22 +77,21 @@ export const Employee = () => {
                 <div className="skils">
                   <h4><DiCssTricks />  Skills</h4>
                   <p className="skils-info">
-                    Software: MATLAB, AutoCAD, Microsoft Office, SolidWorks
-                    Machines: CNC, Lathes
+                    {userData.skill}
                   </p>
                 </div>
                 <br />
                 <div className="profile-work">
                   <h4>My Social Profile</h4>
-                  <a className="fa" href="">
+                  <a className="fa" target='_blank' href={userData.linkedin}>
                     <FaLinkedinIn />
                   </a>
 
-                  <a className="fa" href="">
+                  <a className="fa" target='_blank' href={userData.twitter}>
                     <FaTwitter />
                   </a>
 
-                  <a className="fa" href="">
+                  <a className="fa" target='_blank' href={userData.github}>
                     <FaGithub />
                   </a>
                 </div>
@@ -100,21 +119,20 @@ export const Employee = () => {
                       <label>Email:</label>
                     </div>
                     <div className="col-md-6">
-                      <p>hello@gmail.com</p>
+                      <p>{userData.email}</p>
                     </div>
                     <div className="col-md-4">
                       <label>Contact:</label>
                     </div>
                     <div className="col-md-6">
-                      <p>12345678</p>
+                      <p>{userData.phone}</p>
                     </div>
                     <div className="col-md-4">
                       <label>Education:</label>
                     </div>
                     <div className="col-md-6">
                       <p>
-                        Illinois Institute of Technology Graduation Date: June
-                        2020 BS in Mechanical Engineering GPA: 3.5/3.9
+                        {userData.edu}
                       </p>
                     </div>
                     <div className="col-md-4">
@@ -122,8 +140,7 @@ export const Employee = () => {
                     </div>
                     <div className="col-md-6">
                       <p>
-                        Engineering Intern Illinois Centerless, Chicago, IL
-                        June–August 2019
+                        {userData.exp}+ Yrs
                       </p>
                     </div>
                     <div className="col-md-4">
@@ -131,26 +148,14 @@ export const Employee = () => {
                     </div>
                     <div className="col-md-6">
                       <p>
-                        Laser River Level Gage. Used low-powered laser diode,
-                        Raspberry Pi, and 3G LTE Base HAT to construct an
-                        inexpensive river-level gauge. Sold and deployed 50+.
-
+                        {userData.proj}
                       </p>
                     </div>
-                    {/* <div className="col-md-4">
-                    <label>Skils:</label>
-                  </div>
-                  <div className="col-md-6">
-                    <p>
-                      Software: MATLAB, AutoCAD, Microsoft Office, SolidWorks
-                      Machines: CNC, Lathes
-                    </p>
-                  </div> */}
                     <div className="col-md-4">
                       <label>Languages:</label>
                     </div>
                     <div className="col-md-6">
-                      <p>English, Spanish (fluent)</p>
+                      <p>{userData.lang}</p>
                     </div>
                   </div>
                 </div>
