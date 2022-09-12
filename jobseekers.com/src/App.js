@@ -11,8 +11,10 @@ import Addjob from "./Components/ADD_JOB/Addjob";
 import ProfileForm from "./Components/profile/ProfileForm";
 import Admin from "./Components/protected_routes/Admin";
 import User from "./Components/protected_routes/User"
+import AppliedJobs from "./Components/appliedAndSavedJobs/AppliedJobs";
+import SavedJobs from "./Components/appliedAndSavedJobs/SavedJobs";
 import About from "./Components/about/About"
-
+import JobsAdmin from "./Components/jobsAdmin/JobsAdmin";
 function App() {
 
   return (
@@ -26,6 +28,7 @@ function App() {
         <Route path="/user" element={<User child={<Employee></Employee>}></User>} />  {/* Users own profile */}
         <Route path="/login" element={<Login></Login>}/> {/* Public login page */}
         <Route path="/signup" element={<Signup></Signup>}/> {/* public signup page */}
+        <Route path="/jobadmin" element={<Admin child={<JobsAdmin></JobsAdmin>}></Admin>}></Route>
         <Route path="/addjob" element={<Admin child={<Addjob></Addjob>}></Admin>}></Route> {/* Page for creating job */}
         <Route path="/updateprofile" element={<User child={<ProfileForm></ProfileForm>}></User>}></Route> {/* Page for updating users own profile */}
       </Routes>

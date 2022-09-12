@@ -1,11 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialValOfState = {
-    admin: [],
-    user: [],
-    jobs: [],
     isLoggedIn: false,
-    currRole: ''
+    currRole: '',
+    currUserId: ''
 }
 const userSlice = createSlice({
     name: 'users',
@@ -15,9 +13,11 @@ const userSlice = createSlice({
     reducers: {
         setUserRole: (state, action) => {
             state.value.currRole = action.payload.role;
-            console.log("setting user role to", state.value.currRole);
-        }
+        },
+        setUserId: (state, action) => {
+            state.value.currUserId = action.payload.id;
+        },
     },
 })
-export const {setUserRole} = userSlice.actions;
+export const {setUserRole, setUserId} = userSlice.actions;
 export default userSlice.reducer;

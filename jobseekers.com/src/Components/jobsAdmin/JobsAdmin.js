@@ -1,19 +1,22 @@
-import './JobsListing.css';
+import './JobsAdmin.css';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faIndianRupeeSign, faLocationDot, faFileLines, faClockRotateLeft, faStar } from '@fortawesome/free-solid-svg-icons'
-import { collection, onSnapshot, updateDoc, doc, arrayUnion } from "firebase/firestore";
+// import data from '../../jobs.json'
+import { collection, onSnapshot } from "firebase/firestore";
 import { db } from '../../firebase/config';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 
-const JobsListing = () => {
+const JobsAdmin = () => {
+    const navigate = useNavigate();
     const [jobs, setJobs] = useState([]);
     const {currUserId} = useSelector((state)=>state.users.value); // use this to get the current user's id
+    console.log(currUserId);
 
     useEffect(()=>{
-        onSnapshot(collection(db, 'jobs'), (querySnapshot)=>{
+        const unsub = onSnapshot(collection(db, 'jobs'), (querySnapshot)=>{
             let tempArr = [];
             querySnapshot.forEach((item)=>{
                 tempArr.push({...item.data(), id: item.id})
@@ -23,10 +26,18 @@ const JobsListing = () => {
 
     },[])
 
+    const handleAddJob = (e)=>{
+        navigate('/addjob')
+    }
+
     //used for setting the filters
     const [experience, setExperience] = useState(10);
     const [salaryRadio, setSalaryRadio] = useState("all");
     const [location, setLocation] = useState("all");
+
+    const handleSaveJobs = (e) => {
+        console.log("save to be implemented");
+    }
 
     //utility functions
     const calculateTime = (time) => {
@@ -106,87 +117,11 @@ const JobsListing = () => {
         }
     }
 
-    const handleApply = (jobId) => {
-        // add job id in users collection
-        updateDoc(doc(db, 'users', currUserId), {
-            appliedJobs: arrayUnion(jobId)
-        }).then((res)=>{
-            console.log("job added to current user");
-        }).catch((err)=> {
-            console.log(err);
-        }) 
-        // add user id in jobs collection
-        updateDoc(doc(db, 'jobs', jobId), {
-            applicants: arrayUnion(currUserId)
-        }).then((res)=>{
-            console.log("applicant added to current job");
-        }).catch((err)=> {
-            console.log(err);
-        }) 
-    }
-    const handleSaveJobs = (jobId) => {
-        console.log("save to be implemented");
-        updateDoc(doc(db, 'users', currUserId), {
-            savedJobs: arrayUnion(jobId)
-        }).then((res)=>{
-            console.log("job added to saved job array");
-        }).catch((err)=> {
-            console.log(err);
-        }) 
-    }
-
-    const navigate = useNavigate();
-    const navigateToApplied = () => {
-        navigate('/appliedjobs');
-    }
-    const navigateToSaved = () => {
-        navigate('/savedjobs');
-    }
-
-
     return (
-        <div className='parent-container'>
-            <button onClick={navigateToApplied}>Applied jobs</button>
-            <button onClick={navigateToSaved}>Saved jobs</button>
-            <div className="filter-container">
-                <h4>Filter</h4>
-                <div>
-                    <h6>Location</h6>
-                    <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "all")}>All</button>
-                    <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "remote")}>Remote</button>
-                    <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "office")}>Office</button>
-                </div>
-
-                <div>
-                    <h6>Experience</h6>
-                    <input type="range" min="0" max="10" value={experience} onChange={(e) => handleExperience(e)} />
-                    <p>Yrs: <span id="demo">{experience}+ </span></p>
-                </div>
-                <div className='salary-div'>
-                    <h6>Salary</h6>
-                    <ul>
-                        <li>
-                            <input type='radio' name='salary' checked={salaryRadio === 'all'} value="all" onChange={(e) => handleCheckBox(e, "all")} /> <span>All</span>
-                        </li>
-                        <li>
-                            <input type='radio' name='salary' checked={salaryRadio === '0to3'} value="0to3" onChange={(e) => handleCheckBox(e, "0to3")} /> <span>0 to 3 LPA</span>
-                        </li>
-                        <li>
-                            <input type='radio' name='salary' checked={salaryRadio === '3to5'} value="3to5" onChange={(e) => handleCheckBox(e, "3to5")} /> 3 to 5 LPA
-                        </li>
-                        <li>
-                            <input type='radio' name='salary' checked={salaryRadio === '5to10'} value="5to10" onChange={(e) => handleCheckBox(e, "5to10")} /> 5 to 10 LPA
-                        </li>
-                        <li>
-                            <input type='radio' name='salary' checked={salaryRadio === '10to15'} value="10to15" onChange={(e) => handleCheckBox(e, "10to15")} /> 10 to 15 LPA
-                        </li>
-                        <li>
-                            <input type='radio' name='salary' checked={salaryRadio === '15plus'} value="15+" onChange={(e) => handleCheckBox(e, "15plus")} /> 15+ LPA
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
+        <div className='container'>
+            <button className='btn btn-primary'>SHOW JOB LIST</button>
+            <button className='btn btn-primary' onClick={handleAddJob}>ADD A JOB</button>
+            <button className='btn btn-primary'>SHOW USERS LIST</button>
             <div className='joblisting'>
                 <div className="card-container container  ">
                     <div className="row">
@@ -217,7 +152,9 @@ const JobsListing = () => {
                                         <FontAwesomeIcon icon={faFileLines} />
                                         <span>{item.desc}</span>
                                         <br />
-                                        <button onClick={()=>handleApply(item.id)} className='btn btn-primary apply-btn'>Apply</button>
+                                        <button className='btn btn-success apply-btn'>View Applicants</button>
+                                        <button className='btn btn-primary apply-btn'>Update</button>
+                                        <button className='btn btn-danger apply-btn'>Delete</button>
                                         <div className='history-save'>
                                             <div className='history'>
                                                 <FontAwesomeIcon icon={faClockRotateLeft} />
@@ -226,7 +163,7 @@ const JobsListing = () => {
                                                     {calculateTime(item.postedOn)} DAYS AGO
                                                 </span>
                                             </div>
-                                            <div className='save' onClick={() => handleSaveJobs(item.id)}>
+                                            <div className='save' onClick={(e) => handleSaveJobs(e, item.id)}>
                                                 <FontAwesomeIcon icon={faStar} className="icon" />
                                                 <span>Save</span>
                                             </div>
@@ -236,25 +173,14 @@ const JobsListing = () => {
 
                             ))
                         }
+                   
                     </div>
                 </div>
             </div>
 
-            <div className="featured-container">
-                <p className="featured-heading">Featured Opportunities</p>
-                <img alt='' src='https://img.naukimg.com/fc_images/v2/63124.gif'></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/103944.gif"></img>
-                <img alt='' src='https://img.naukimg.com/fc_images/v2/41373.gif'></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/24468.gif"></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/15001.gif"></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/479215.gif"></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/13512.gif"></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/16987.gif"></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/100007.gif"></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/121866.gif"></img>
-            </div>
+            
 
         </div>
     )
 }
-export default JobsListing;
+export default JobsAdmin;
