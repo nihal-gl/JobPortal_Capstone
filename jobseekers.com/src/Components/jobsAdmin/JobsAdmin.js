@@ -116,6 +116,10 @@ const JobsAdmin = () => {
         }
     }
 
+    const viewApplicants = (id) => {
+        navigate('/applicants/'+id);
+    }
+
     return (
         <div className='container'>
             <button className='btn btn-primary'>SHOW JOB LIST</button>
@@ -151,7 +155,7 @@ const JobsAdmin = () => {
                                         <FontAwesomeIcon icon={faFileLines} />
                                         <span>{item.desc}</span>
                                         <br />
-                                        <button className='btn btn-success apply-btn'>View Applicants</button>
+                                        <button className='btn btn-success apply-btn' onClick={()=>viewApplicants(item.id)}>View Applicants</button>
                                         <button className='btn btn-primary apply-btn'>Update</button>
                                         <button className='btn btn-danger apply-btn'>Delete</button>
                                         <div className='history-save'>
