@@ -1,9 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialValOfState = {
-    admin: [],
-    user: [],
-    jobs: [],
     isLoggedIn: false,
     currRole: '',
     currUserId: ''
@@ -19,7 +16,7 @@ const userSlice = createSlice({
         },
         setUserId: (state, action) => {
             state.value.currUserId = action.payload.id;
-        }
+        },
     },
 })
 export const {setUserRole, setUserId} = userSlice.actions;
