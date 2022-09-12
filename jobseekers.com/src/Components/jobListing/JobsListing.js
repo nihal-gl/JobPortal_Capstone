@@ -32,9 +32,9 @@ const JobsListing = () => {
     const calculateTime = (time) => {
         // const givenTime = new Date(time);
         console.log();
-        const currTime = new Date(Date.now())
-        const diffDays = parseInt((currTime - time.toDate()) / (1000 * 60 * 60 * 24), 10);
-        return diffDays;
+        // const currTime = new Date(Date.now())
+        // const diffDays = parseInt((currTime - time.toDate()) / (1000 * 60 * 60 * 24), 10);
+        // return diffDays;
     }
 
     //Filtering functions

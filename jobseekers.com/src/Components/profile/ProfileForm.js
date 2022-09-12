@@ -1,11 +1,25 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import "./ProfileForm.css"
 import { useSelector } from "react-redux";
+import { collection,onSnapshot } from "firebase/firestore";
 
 const ProfileForm = () => {
     const {currUserId} = useSelector((state)=> state.users.value);
+    const [userData, setUserData] = useState();
+    useEffect(()=>{
+        onSnapshot(collection(db, 'users'), (users)=>{
+            let tempArr = [];
+            users.forEach((user)=>{
+                if(user.id === currUserId) {
+                  setUserData(user.data());
+                }
+            });
+        })
+    
+    },[])
+
     const [photo, setPhoto] = useState();
     const [name, setName] = useState();
     const [title, setTitle] = useState();

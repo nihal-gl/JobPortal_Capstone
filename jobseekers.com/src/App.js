@@ -26,8 +26,10 @@ function App() {
         <Route path="/user" element={<User child={<Employee></Employee>}></User>} />  {/* Users own profile */}
         <Route path="/login" element={<Login></Login>}/> {/* Public login page */}
         <Route path="/signup" element={<Signup></Signup>}/> {/* public signup page */}
-        <Route path="/addjob" element={<Admin child={<Addjob></Addjob>}></Admin>}></Route> {/* Page for creating job */}
+        {/* <Route path="/addjob" element={<Admin child={<Addjob></Addjob>}></Admin>}></Route> Page for creating job */}
         <Route path="/updateprofile" element={<User child={<ProfileForm></ProfileForm>}></User>}></Route> {/* Page for updating users own profile */}
+        <Route path="/savedjobs" element={<User child={<SavedJobs></SavedJobs>}></User>}></Route>
+        <Route path="/appliedjobs" element={<User child={<AppliedJobs></AppliedJobs>}></User>}></Route>
       </Routes>
       <Footer></Footer>
     </BrowserRouter>
