@@ -11,6 +11,8 @@ import Addjob from "./Components/ADD_JOB/Addjob";
 import ProfileForm from "./Components/profile/ProfileForm";
 import Admin from "./Components/protected_routes/Admin";
 import User from "./Components/protected_routes/User"
+import AppliedJobs from "./Components/appliedAndSavedJobs/AppliedJobs";
+import SavedJobs from "./Components/appliedAndSavedJobs/SavedJobs";
 import About from "./Components/about/About"
 import JobsAdmin from "./Components/jobsAdmin/JobsAdmin";
 function App() {
