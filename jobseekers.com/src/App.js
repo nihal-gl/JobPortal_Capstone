@@ -44,6 +44,8 @@ function App() {
         <Route path="/updatejob" element={<Admin child={<UpdateJobs></UpdateJobs>}></Admin>}></Route>
         <Route path="/bulkupload" element={<Admin child={<Bulk></Bulk>}></Admin>}></Route>
 
+        <Route path="/userlist" element={<Admin child={<UserList></UserList>}></Admin>}></Route>
+
       </Routes>
 
     </BrowserRouter>
