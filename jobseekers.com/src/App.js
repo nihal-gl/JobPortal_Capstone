@@ -15,11 +15,10 @@ import AppliedJobs from "./Components/appliedAndSavedJobs/AppliedJobs";
 import SavedJobs from "./Components/appliedAndSavedJobs/SavedJobs";
 import About from "./Components/about/About"
 import JobsAdmin from "./Components/jobsAdmin/JobsAdmin";
+import Applicants from "./Components/applicantsToAJob/Applicants";
 function App() {
 
-
   return (
-  
     <BrowserRouter>
    
     <Navbar></Navbar>
@@ -33,16 +32,13 @@ function App() {
         <Route path="/jobadmin" element={<Admin child={<JobsAdmin></JobsAdmin>}></Admin>}></Route>
         <Route path="/addjob" element={<Admin child={<Addjob></Addjob>}></Admin>}></Route> {/* Page for creating job */}
         <Route path="/updateprofile" element={<User child={<ProfileForm></ProfileForm>}></User>}></Route> {/* Page for updating users own profile */}
-      <Route path="/login" element={<Login/>}/>
         <Route path="/savedjobs" element={<User child={<SavedJobs></SavedJobs>}></User>}></Route>
         <Route path="/appliedjobs" element={<User child={<AppliedJobs></AppliedJobs>}></User>}></Route>
+        <Route path="/applicants/:id" element={<Admin child={<Applicants></Applicants>}></Admin>}></Route>
       </Routes>
       <Footer></Footer>
     </BrowserRouter>
-  
   );
 }
 
 export default App;
-
-
