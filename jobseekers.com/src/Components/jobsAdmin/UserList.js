@@ -2,8 +2,8 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { onSnapshot, collection } from "firebase/firestore";
 import { db } from "../../firebase/config";
-import './Applicants.css'
-const Applicants = () => {
+import './UserList.css'
+const UserList = () => {
     const params = useParams();
     const [data, setData] = useState([]);
     console.log(params.id);
@@ -11,24 +11,19 @@ const Applicants = () => {
     let tempArr = [];
     let arr = [];
     useEffect(() => {
-        onSnapshot(collection(db, 'jobs'), (jobs) => {
-            jobs.docs.forEach((job) => {
-                // console.log(job);
-                if (job.id === params.id)
-                    tempArr.push(...job.data().applicants)
-            });
-        })
         onSnapshot(collection(db, 'users'), (users) => {
-            users.docs.forEach((user) => {
-                tempArr.forEach(id => {
-                    if (user.id === id) {
-                        arr.push(user.data());
-                    }
-                });
+            users.docs.forEach((user) =>{
+                //tempArr.push(user)
+                //console.log(`${user.data()}`)
+                if(user.data().role === "user"){
+                    tempArr.push(user.data())
+                    console.log('the user found')
+                }
             })
-            setData(arr);
+            setData(tempArr)
         })
     }, [])
+    console.log('got data')
 
     return (
         <div className="container applicants-div">
@@ -63,4 +58,4 @@ const Applicants = () => {
         </div>
     )
 }
-export default Applicants
+export default UserList
