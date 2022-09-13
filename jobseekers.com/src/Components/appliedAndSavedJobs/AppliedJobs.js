@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faIndianRupeeSign, faLocationDot, faFileLines, faClockRotateLeft, faStar } from '@fortawesome/free-solid-svg-icons'
 import './AppliedJobs.css';
+import NavbarJobList from "../jobListing/navbarJobList/NavbarJobList";
 
 const AppliedJobs = () => {
     const { currUserId } = useSelector((state) => state.users.value); // use this to get the current user's id
@@ -50,6 +51,8 @@ const AppliedJobs = () => {
     }
 
     return (
+       <>
+       <NavbarJobList></NavbarJobList>
         <div className="applied-job-parent-container">
             <h1>applied job</h1>
             <div className="container">
@@ -102,6 +105,7 @@ const AppliedJobs = () => {
                 </div>
             </div>
         </div>
+       </>
     )
 }
 export default AppliedJobs

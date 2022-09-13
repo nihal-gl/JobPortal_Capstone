@@ -6,7 +6,7 @@ import { collection, onSnapshot, updateDoc, doc, arrayUnion } from "firebase/fir
 import { db } from '../../firebase/config';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../common/navbar/Navbar';
+import NavbarJobList from './navbarJobList/NavbarJobList';
 
 
 const JobsListing = () => {
@@ -137,21 +137,21 @@ const JobsListing = () => {
         }) 
     }
 
-    const navigate = useNavigate();
-    const navigateToApplied = () => {
-        navigate('/appliedjobs');
-    }
-    const navigateToSaved = () => {
-        navigate('/savedjobs');
-    }
+    // const navigate = useNavigate();
+    // const navigateToApplied = () => {
+    //     navigate('/appliedjobs');
+    // }
+    // const navigateToSaved = () => {
+    //     navigate('/savedjobs');
+    // }
 
 
     return (
         <>
-        <Navbar></Navbar>
+        <NavbarJobList></NavbarJobList>
          <div className='parent-container'>
-            <button onClick={navigateToApplied}>Applied jobs</button>
-            <button onClick={navigateToSaved}>Saved jobs</button>
+            {/* <button onClick={navigateToApplied}>Applied jobs</button>
+            <button onClick={navigateToSaved}>Saved jobs</button> */}
             <div className="filter-container">
                 <h4>Filter</h4>
                 <div>

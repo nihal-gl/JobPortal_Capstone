@@ -1,5 +1,5 @@
 import React from 'react';
-import './navbar.css';
+import './navbarJob.css'
 import { NavLink } from 'react-router-dom';
 import { NavDropdown } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setUserRole } from '../../../useSlice';
 
-const Navbar = () => {
+const NavbarJobList = () => {
   const navigate = useNavigate();
   const { currRole } = useSelector((state) => state.users.value);
   // const {currUserId} = useSelector((state)=>state.users.value);
@@ -41,6 +41,12 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/updateprofile" >Update Profile</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/appliedjobs" >Applied Jobs</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/savedjobs" >Saved Jobs</NavLink>
             </li>
 
           </ul>
@@ -87,4 +93,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default NavbarJobList;

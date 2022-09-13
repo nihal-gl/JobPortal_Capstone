@@ -1,5 +1,9 @@
+.saved-job-parent-container{
+    margin-top: 10%;
+}
 .saved-job-parent-container .row {
     margin-right: 4px;
+    
 }
 .saved-job-card {
     background-color: #92B4EC;

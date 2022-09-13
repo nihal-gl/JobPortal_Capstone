@@ -1,79 +1,8 @@
-section {
-    width: 100%;
-    padding: 10px;
-    min-height: calc(100vh - 80px);
-}
 
-section .form_data {
-    max-width: 550px;
-    margin: 25px auto;
-    padding: 35px 10px;
-    box-shadow: 0 0 15px -10px #2d3748;
-    border-radius: 10px;
+.addjobContainer{
     display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-.form_heading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.form_data h2 {
-    font-size: 34px;
-    color: #2a4365;
-    text-align:center;
-    color: #ffffff
-}
-
-.form_data form {
-    margin-top: 45px;
-    width: 100%;
-    padding: 10px 50px;
-    background-color: #20232a;
-}
-
-.form_data form .form_input input {
-    width: 100%;
-    padding: 11px;
-    border: 1px solid #d4d0d0;
-    border-radius: 5px;
-    outline: none;
-    margin-bottom: 14px; 
-    margin-top: 9px;
-    font-size: 14px;
-
-}
-
-.form_data form .form_input label {
-    font-weight: 600;
-    font-size: 15px;
-    color: #ffffff;
-}
-
-.form_data form .form_input input:focus {
-    border: 2px solid rgba(66, 153, 225, 0.6);
-}
-
-form .btn {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    background-color: #1a365d;
-    color: #fff;
-    font-weight: 600;
-    font-size: 18px;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: all .3s;
-}
-
-
-form .btn:hover {
-    background-color: #97a1b1;
+.addjobbox{
+    margin-left: 30%;
 }

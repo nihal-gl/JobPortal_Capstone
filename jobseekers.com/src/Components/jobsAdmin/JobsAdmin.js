@@ -3,45 +3,40 @@ import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faIndianRupeeSign, faLocationDot, faFileLines, faClockRotateLeft, faStar } from '@fortawesome/free-solid-svg-icons'
 // import data from '../../jobs.json'
-import { collection, onSnapshot, doc, setDoc, deleteDoc,updateDoc } from "firebase/firestore";
+import { collection, onSnapshot, doc, setDoc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from '../../firebase/config';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
+import Navbar from '../admin-panel/adminComponents/navbar/Navbar';
+import Sidebar from '../admin-panel/adminComponents/sidebar/Sidebar';
 
 
 const JobsAdmin = () => {
     const navigate = useNavigate();
     const [jobs, setJobs] = useState([]);
-    const {currUserId} = useSelector((state)=>state.users.value); // use this to get the current user's id
+    const { currUserId } = useSelector((state) => state.users.value); // use this to get the current user's id
     console.log(currUserId);
 
-    useEffect(()=>{
-        const unsub = onSnapshot(collection(db, 'jobs'), (querySnapshot)=>{
+    useEffect(() => {
+        const unsub = onSnapshot(collection(db, 'jobs'), (querySnapshot) => {
             let tempArr = [];
-            querySnapshot.forEach((item)=>{
-                tempArr.push({...item.data(), id: item.id})
+            querySnapshot.forEach((item) => {
+                tempArr.push({ ...item.data(), id: item.id })
             });
             setJobs(tempArr);
         })
 
-    },[])
+    }, [])
 
-    const handleAddJob = (e)=>{
-        navigate('/addjob')
-    }
 
     const handleDelete = (id) => {
-        deleteDoc(doc(db, 'jobs', id)).then((res)=>{
+        deleteDoc(doc(db, 'jobs', id)).then((res) => {
             alert("job has been deleted");
         })
     }
 
     const handleUpdate = (id) => {
-        navigate('/updatejob/'+id)
-    }
-
-    const handleUserList = () => {
-        navigate('/userlist')
+        navigate('/updatejob/' + id)
     }
 
     //used for setting the filters
@@ -131,73 +126,80 @@ const JobsAdmin = () => {
     }
 
     const viewApplicants = (id) => {
-        navigate('/applicants/'+id);
+        navigate('/applicants/' + id);
     }
 
     return (
-        <div className='container'>
-            <button className='btn btn-primary'>SHOW JOB LIST</button>
-            <button className='btn btn-primary' onClick={handleAddJob}>ADD A JOB</button>
-            <button className='btn btn-primary' onClick={handleUserList} >SHOW USERS LIST</button>
-            <div className='joblisting'> 
-                <div className="card-container container  ">
-                    <div className="row">
-                        {
-                            jobs.map((item) => (
-                                <div className="card job-listing-card">
-                                    <div className='card-body'>
-                                        <h4 className='job-title'>{item.title}</h4>
-                                        <p className='company-name'>{item.company}</p>
-                                        <ul className='card-list'>
-                                            <li>
-                                                <FontAwesomeIcon icon={faBriefcase} />
-                                                {/* always write years, no plus symbol in json */}
-                                                <span>{item.exp}+ Yrs</span>
-                                            </li>
-                                            <li>
-                                                <FontAwesomeIcon icon={faIndianRupeeSign} />
-                                                {/* always write numbers, lpa will not be added in json */}
-                                                <span>{item.ctc > 0 ? item.ctc + " LPA" : "Not disclosed"}</span>
-                                            </li>
-                                            <li>
-                                                <FontAwesomeIcon icon={faLocationDot} />
-                                                {/* only 2 locations are permitted in json*/}
-                                                <span>{item.location}</span>
-                                            </li>
-                                        </ul>
+        <>
 
-                                        <FontAwesomeIcon icon={faFileLines} />
-                                        <span>{item.desc}</span>
-                                        <br />
-                                        <button className='btn btn-primary apply-btn' onClick={()=>handleUpdate(item.id)}>Update</button>
-                                        <button className='btn btn-success apply-btn' onClick={()=>viewApplicants(item.id)}>View Applicants</button>
-                                        <button className='btn btn-danger apply-btn'onClick={()=>handleDelete(item.id)}>Delete</button>
-                                        <div className='history-save'>
-                                            <div className='history'>
-                                                <FontAwesomeIcon icon={faClockRotateLeft} />
+            <div className='joblistHome'>
+                <Navbar></Navbar>
+                <div className='joblistcontainer'>
+                    <Sidebar></Sidebar>
+                    <div className='container joblistbox'>
+                        <h1 className='text-center'>Job List</h1>
+                        <div className='joblisting'>
+                            <div className="card-container container  ">
+                                <div className="row">
+                                    {
+                                        jobs.map((item) => (
+                                            <div className="card job-listing-card">
+                                                <div className='card-body'>
+                                                    <h4 className='job-title'>{item.title}</h4>
+                                                    <p className='company-name'>{item.company}</p>
+                                                    <ul className='card-list'>
+                                                        <li>
+                                                            <FontAwesomeIcon icon={faBriefcase} />
+                                                            {/* always write years, no plus symbol in json */}
+                                                            <span>{item.exp}+ Yrs</span>
+                                                        </li>
+                                                        <li>
+                                                            <FontAwesomeIcon icon={faIndianRupeeSign} />
+                                                            {/* always write numbers, lpa will not be added in json */}
+                                                            <span>{item.ctc > 0 ? item.ctc + " LPA" : "Not disclosed"}</span>
+                                                        </li>
+                                                        <li>
+                                                            <FontAwesomeIcon icon={faLocationDot} />
+                                                            {/* only 2 locations are permitted in json*/}
+                                                            <span>{item.location}</span>
+                                                        </li>
+                                                    </ul>
 
-                                                <span>
-                                                    {calculateTime(item.postedOn)} DAYS AGO
-                                                </span>
+                                                    <FontAwesomeIcon icon={faFileLines} />
+                                                    <span>{item.desc}</span>
+                                                    <br />
+                                                    <button className='btn btn-primary apply-btn' onClick={() => handleUpdate(item.id)}>Update</button>
+                                                    <button className='btn btn-success apply-btn' onClick={() => viewApplicants(item.id)}>View Applicants</button>
+                                                    <button className='btn btn-danger apply-btn' onClick={() => handleDelete(item.id)}>Delete</button>
+                                                    <div className='history-save'>
+                                                        <div className='history'>
+                                                            <FontAwesomeIcon icon={faClockRotateLeft} />
+
+                                                            <span>
+                                                                {calculateTime(item.postedOn)} DAYS AGO
+                                                            </span>
+                                                        </div>
+                                                        <div className='save' onClick={(e) => handleSaveJobs(e, item.id)}>
+                                                            <FontAwesomeIcon icon={faStar} className="icon" />
+                                                            <span>Save</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className='save' onClick={(e) => handleSaveJobs(e, item.id)}>
-                                                <FontAwesomeIcon icon={faStar} className="icon" />
-                                                <span>Save</span>
-                                            </div>
-                                        </div>
-                                    </div>
+
+                                        ))
+                                    }
+
                                 </div>
+                            </div>
+                        </div>
 
-                            ))
-                        }
-                   
+
+
                     </div>
                 </div>
             </div>
-
-            
-
-        </div>
+        </>
     )
 }
 export default JobsAdmin;

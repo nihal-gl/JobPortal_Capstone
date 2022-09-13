@@ -3,6 +3,9 @@ import { Data } from './Data';
 import * as XLSX from 'xlsx'
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../../firebase/config';
+import Navbar from '../adminComponents/navbar/Navbar';
+import Sidebar from '../adminComponents/sidebar/Sidebar';
+import './bulk.css'
 
 function Bulk() {
 
@@ -68,53 +71,61 @@ function Bulk() {
   }
 
   return (
-    <div className="container">
+    <>
+      <div className='bulkuploadHome'>
+        <Navbar></Navbar>
+        <div className='bulkuploadcontainer'>
+          <Sidebar></Sidebar>
+          <div className="container  bulkuploadbox">
+            {/* upload file section */}
+            <div className='form'>
+              <form className='form-group' autoComplete="off"
+                onSubmit={handleSubmit}>
+                <label><h5>Upload Excel file</h5></label>
+                <br></br>
+                <input type='file' className='form-control'
+                  onChange={handleFile} required></input>
+                {excelFileError && <div className='text-danger'
+                  style={{ marginTop: 5 + 'px' }}>{excelFileError}</div>}
+                <button type='submit' className='btn btn-success'
+                  style={{ marginTop: 5 + 'px' }}>Submit</button>
+              </form>
+            </div>
 
-      {/* upload file section */}
-      <div className='form'>
-        <form className='form-group' autoComplete="off"
-          onSubmit={handleSubmit}>
-          <label><h5>Upload Excel file</h5></label>
-          <br></br>
-          <input type='file' className='form-control'
-            onChange={handleFile} required></input>
-          {excelFileError && <div className='text-danger'
-            style={{ marginTop: 5 + 'px' }}>{excelFileError}</div>}
-          <button type='submit' className='btn btn-success'
-            style={{ marginTop: 5 + 'px' }}>Submit</button>
-        </form>
-      </div>
+            <br></br>
+            <hr></hr>
 
-      <br></br>
-      <hr></hr>
+            {/* view file section */}
+            <h5>Preview</h5>
+            <div className='viewer'>
+              {excelData === null && <>No file selected</>}
+              {excelData !== null && (
+                <div className='table-responsive'>
+                  <table className='table'>
+                    <thead>
+                      <tr>
+                        <th scope='col'>Company</th>
+                        <th scope='col'>CTC</th>
+                        <th scope='col'>Experience</th>
+                        <th scope='col'>Location</th>
+                        <th scope='col'>Title</th>
 
-      {/* view file section */}
-      <h5>Preview</h5>
-      <div className='viewer'>
-        {excelData === null && <>No file selected</>}
-        {excelData !== null && (
-          <div className='table-responsive'>
-            <table className='table'>
-              <thead>
-                <tr>
-                  <th scope='col'>Company</th>
-                  <th scope='col'>CTC</th>
-                  <th scope='col'>Experience</th>
-                  <th scope='col'>Location</th>
-                  <th scope='col'>Title</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <Data excelData={excelData} />
+                    </tbody>
+                  </table>
+                  <button className='btn btn-success' onClick={addJobs}>Add Job</button>
+                </div>
+              )}
+            </div>
 
-                </tr>
-              </thead>
-              <tbody>
-                <Data excelData={excelData} />
-              </tbody>
-            </table>
-            <button className='btn btn-success' onClick={addJobs}>Add Job</button>
           </div>
-        )}
-      </div>
+        </div>
 
-    </div>
+      </div>
+    </>
   );
 }
 

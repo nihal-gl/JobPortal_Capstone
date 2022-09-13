@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faIndianRupeeSign, faLocationDot, faFileLines, faClockRotateLeft, faRemove, faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
 import './SavedJobs.css';
+import NavbarJobList from "../jobListing/navbarJobList/NavbarJobList";
 const SavedJobs = () => {
     const { currUserId } = useSelector((state) => state.users.value); // use this to get the current user's id
     const [data, setData] = useState([]);
@@ -60,6 +61,8 @@ const SavedJobs = () => {
     }
 
     return (
+       <>
+       <NavbarJobList></NavbarJobList>
         <div className="saved-job-parent-container">
             <h1>Saved job</h1>
             <div className="container">
@@ -113,6 +116,7 @@ const SavedJobs = () => {
                 </div>
             </div>
         </div>
+       </>
     )
 }
 export default SavedJobs
