@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faIndianRupeeSign, faLocationDot, faFileLines, faClockRotateLeft, faStar } from '@fortawesome/free-solid-svg-icons'
 // import data from '../../jobs.json'
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, doc, setDoc, deleteDoc,updateDoc } from "firebase/firestore";
 import { db } from '../../firebase/config';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
@@ -28,6 +28,20 @@ const JobsAdmin = () => {
 
     const handleAddJob = (e)=>{
         navigate('/addjob')
+    }
+
+    const handleDelete = (id) => {
+        deleteDoc(doc(db, 'jobs', id)).then((res)=>{
+            alert("job has been deleted");
+        })
+    }
+
+    const handleUpdate = (id) => {
+        updateDoc(doc(db, 'jobs', id), {
+            title: "updated title"
+        }).then((res)=>{
+            alert("updated");
+        })
     }
 
     //used for setting the filters
@@ -124,7 +138,7 @@ const JobsAdmin = () => {
         <div className='container'>
             <button className='btn btn-primary'>SHOW JOB LIST</button>
             <button className='btn btn-primary' onClick={handleAddJob}>ADD A JOB</button>
-            <button className='btn btn-primary'>SHOW USERS LIST</button>
+            <button className='btn btn-primary' >SHOW USERS LIST</button>
             <div className='joblisting'>
                 <div className="card-container container  ">
                     <div className="row">
@@ -157,7 +171,7 @@ const JobsAdmin = () => {
                                         <br />
                                         <button className='btn btn-success apply-btn' onClick={()=>viewApplicants(item.id)}>View Applicants</button>
                                         <button className='btn btn-primary apply-btn'>Update</button>
-                                        <button className='btn btn-danger apply-btn'>Delete</button>
+                                        <button className='btn btn-danger apply-btn'onClick={()=>handleDelete(item.id)}>Delete</button>
                                         <div className='history-save'>
                                             <div className='history'>
                                                 <FontAwesomeIcon icon={faClockRotateLeft} />
