@@ -4,6 +4,7 @@ import { db } from "../../firebase/config";
 import "./ProfileForm.css"
 import { useSelector } from "react-redux";
 import { collection, onSnapshot } from "firebase/firestore";
+import Navbar from "../common/navbar/Navbar";
 
 const ProfileForm = () => {
     const { currUserId } = useSelector((state) => state.users.value);
@@ -72,6 +73,8 @@ const ProfileForm = () => {
 
     }
     return (
+       <>
+       <Navbar></Navbar>
         <section className="profile-section">
             {
                 <div className="form_data">
@@ -151,6 +154,7 @@ const ProfileForm = () => {
             }
 
         </section>
+       </>
     )
 }
 
