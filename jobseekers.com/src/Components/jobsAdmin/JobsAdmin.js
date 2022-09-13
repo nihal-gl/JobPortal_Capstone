@@ -1,8 +1,5 @@
 import './JobsAdmin.css';
 import { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBriefcase, faIndianRupeeSign, faLocationDot, faFileLines, faClockRotateLeft, faStar } from '@fortawesome/free-solid-svg-icons'
-import { collection, onSnapshot, doc, setDoc, deleteDoc, updateDoc } from "firebase/firestore";
 import { collection, onSnapshot, doc, deleteDoc } from "firebase/firestore";
 import { db } from '../../firebase/config';
 import { useSelector } from 'react-redux';
@@ -36,7 +33,10 @@ const JobsAdmin = () => {
         })
     }
 
-
+    const handleUpdate = (id) => {
+        navigate('/updatejob/' + id)
+    }
+    
 
    
 
