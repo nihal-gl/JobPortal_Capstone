@@ -19,7 +19,7 @@ import Applicants from "./Components/applicantsToAJob/Applicants";
 import UpdateJobs from "./Components/jobsAdmin/UpdateJobs";
 import AdminPanel from "./Components/admin-panel/admin/AdminPanel";
 import Bulk from "./Components/admin-panel/BulkUpload/Bulk";
-
+import UserList from "./Components/jobsAdmin/UserList";
 function App() {
 
   return (
@@ -43,7 +43,6 @@ function App() {
         <Route path="/applicants/:id" element={<Admin child={<Applicants></Applicants>}></Admin>}></Route>
         <Route path="/updatejob" element={<Admin child={<UpdateJobs></UpdateJobs>}></Admin>}></Route>
         <Route path="/bulkupload" element={<Admin child={<Bulk></Bulk>}></Admin>}></Route>
-
         <Route path="/userlist" element={<Admin child={<UserList></UserList>}></Admin>}></Route>
 
       </Routes>
