@@ -56,7 +56,7 @@ const Signup = () => {
     else {
       console.log("data added sucessfully")
       // localStorage.setItem("user",JSON.stringify([...data,inputval]));
-      signup(email, password, role)
+      signup(email, password, role, name)
     }
   }
 
