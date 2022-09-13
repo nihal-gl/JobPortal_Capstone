@@ -17,6 +17,9 @@ import About from "./Components/about/About"
 import JobsAdmin from "./Components/jobsAdmin/JobsAdmin";
 import Applicants from "./Components/applicantsToAJob/Applicants";
 import UpdateJobs from "./Components/jobsAdmin/UpdateJobs";
+import AdminPanel from "./Components/admin-panel/admin/AdminPanel";
+import Bulk from "./Components/admin-panel/BulkUpload/Bulk";
+
 function App() {
 
   return (
@@ -31,6 +34,7 @@ function App() {
         <Route path="/login" element={<Login></Login>} /> {/* Public login page */}
         <Route path="/signup" element={<Signup></Signup>} /> {/* public signup page */}
         <Route path="/jobadmin" element={<Admin child={<JobsAdmin></JobsAdmin>}></Admin>}></Route>
+        <Route path="/adminpanel" element={<Admin child={<AdminPanel></AdminPanel>}></Admin>}></Route>
         <Route path="/addjob" element={<Admin child={<Addjob></Addjob>}></Admin>}></Route> {/* Page for creating job */}
         <Route path="/updateprofile" element={<User child={<ProfileForm></ProfileForm>}></User>}></Route> {/* Page for updating users own profile */}
         <Route path="/login" element={<Login />} />
@@ -38,6 +42,8 @@ function App() {
         <Route path="/appliedjobs" element={<User child={<AppliedJobs></AppliedJobs>}></User>}></Route>
         <Route path="/applicants/:id" element={<Admin child={<Applicants></Applicants>}></Admin>}></Route>
         <Route path="/updatejob" element={<Admin child={<UpdateJobs></UpdateJobs>}></Admin>}></Route>
+        <Route path="/bulkupload" element={<Admin child={<Bulk></Bulk>}></Admin>}></Route>
+        
       </Routes>
       <Footer></Footer>
     </BrowserRouter>

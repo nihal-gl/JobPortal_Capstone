@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import './sidebar.scss'
 
 const Sidebar = () => {
-   
+
     return (
         <div className='sidebar'>
             <div className="top">
@@ -18,13 +18,8 @@ const Sidebar = () => {
                     </li>
                     <p className="title">LISTS</p>
                     <li>
-                        <i className="fa fa-solid fa-user icon"></i>
-                        <NavLink className="nav-link" to="/applicants"><span>Applicants</span></NavLink>
-
-                    </li>
-                    <li>
                         <i className="fa fa-solid fa-briefcase icon"></i>
-                        <NavLink className="nav-link" to="/joblist"><span>Job Lists</span></NavLink>
+                        <NavLink className="nav-link" to="/jobadmin"><span>Job Lists</span></NavLink>
 
                     </li>
                     <li>
@@ -32,8 +27,15 @@ const Sidebar = () => {
                         <NavLink className="nav-link" to="/addjob"><span>Add Job</span></NavLink>
                     </li>
                     <li>
+                        <i className="fa fa-solid fa-user icon"></i>
+                        <NavLink className="nav-link" to="/userList"><span>List of users</span></NavLink>
+
+                    </li>
+
+
+                    <li>
                         <i class="fa fa-solid fa-plus icon"></i>
-                        <NavLink className="nav-link" to="/recentlyHired"><span>Bulk Upload</span></NavLink>
+                        <NavLink className="nav-link" to="/bulkupload"><span>Bulk Upload</span></NavLink>
                     </li>
                     {/* <li>
                         <i className="fa fa-solid fa-bookmark icon"></i>
@@ -73,7 +75,7 @@ const Sidebar = () => {
                     <li>
                         <i className="fa fa-solid fa-right-from-bracket icon"></i>
                         <span>Logout</span>
-                        
+
                     </li>
                 </ul>
             </div>
