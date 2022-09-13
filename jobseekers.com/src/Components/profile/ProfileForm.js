@@ -6,7 +6,8 @@ import { useSelector } from "react-redux";
 import { collection, onSnapshot } from "firebase/firestore";
 import Navbar from "../common/navbar/Navbar";
 import { FaOptinMonster } from "react-icons/fa";
-
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 const ProfileForm = () => {
     const { currUserId } = useSelector((state) => state.users.value);
 
@@ -76,85 +77,84 @@ const ProfileForm = () => {
     return (
        <>
        <Navbar></Navbar>
-        <section className="profile-section">
-            {
-                <div className="form_data">
-                    <div className="form_heading">
-                        <form>
-                            <h2>Add your profile details</h2>
-                            <div className="form_input">
-                                <label htmlFor="photo">Photograph</label>
-                                <input type="text" name="photo" onChange={(e) => setPhoto(e.target.value)} 
-                                    value={photo} id="job_id" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="name">Name</label>
-                                <input type="text" name="name" onChange={(e) => setName(e.target.value)}
-                                    value={name} id="name" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="text">Job Title</label>
-                                <input type="text" name="email" onChange={(e) => setTitle(e.target.value)}
+        <div className="container mt-8">
+        <section className='d-flex justify-content-between'>
+          <div className="left_data mt-3 p-3" style={{ width: "100%" }}>
+            <h3 className='text-center col-lg-6'>Update Job Details</h3>
+            <Form >
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
+                <label htmlFor="photo">Photograph</label>
+                <Form.Control type="text" name="photo" onChange={(e) => setPhoto(e.target.value)} value={photo} id="job_id" />
+              </Form.Group>
+                <label htmlFor="name">Name</label>
+                <Form.Control type="text" name="name" onChange={(e) => setName(e.target.value)} value={name} id="name" />
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="text">Job Title</label>
+                                <Form.Control type="text" name="email" onChange={(e) => setTitle(e.target.value)}
                                     value={title} id="title" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="phone">Phone</label>
-                                <input type="text" name="phone" onChange={(e) => setPhone(e.target.value)}
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="phone">Phone</label>
+                                <Form.Control type="text" name="phone" onChange={(e) => setPhone(e.target.value)}
                                     value={phone} id="phone" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="experience">Experience</label>
-                                <input type="text" name="experience" onChange={(e) => setExp(e.target.value)}
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="experience">Experience</label>
+                                <Form.Control type="text" name="experience" onChange={(e) => setExp(e.target.value)}
                                     value={exp} id="experience" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="education">Education</label>
-                                <input type="text" name="education" onChange={(e) => setEdu(e.target.value)}
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="education">Education</label>
+                                <Form.Control type="text" name="education" onChange={(e) => setEdu(e.target.value)}
                                     value={edu} id="education" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="projects">Projects</label>
-                                <input type="text" name="projects" onChange={(e) => setProj(e.target.value)}
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="projects">Projects</label>
+                                <Form.Control type="text" name="projects" onChange={(e) => setProj(e.target.value)}
                                     value={proj} id="projects" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="skills">Skills</label>
-                                <input type="text" name="skills" onChange={(e) => setSkill(e.target.value)}
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="skills">Skills</label>
+                                <Form.Control type="text" name="skills" onChange={(e) => setSkill(e.target.value)}
                                     value={skill} id="skills" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="languages">Languages</label>
-                                <input type="text" name="languages" onChange={(e) => setLang(e.target.value)}
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="languages">Languages</label>
+                                <Form.Control type="text" name="languages" onChange={(e) => setLang(e.target.value)}
                                     value={lang} id="languages" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="linkedin">LinkedIn</label>
-                                <input type="text" name="linkedin" onChange={(e) => setLinkedin(e.target.value)}
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="linkedin">LinkedIn</label>
+                                <Form.Control type="text" name="linkedin" onChange={(e) => setLinkedin(e.target.value)}
                                     value={linkedin} id="linkedin" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="tweeter">Twitter</label>
-                                <input type="text" name="tweeter" onChange={(e) => settwitter(e.target.value)}
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="tweeter">Twitter</label>
+                                <Form.Control type="text" name="tweeter" onChange={(e) => settwitter(e.target.value)}
                                     value={twitter} id="tweeter" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="github">Github</label>
-                                <input type="text" name="github" onChange={(e) => setGithub(e.target.value)}
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="github">Github</label>
+                                <Form.Control type="text" name="github" onChange={(e) => setGithub(e.target.value)}
                                     value={github} id="github" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="resume">Resume (Google drive link)</label>
-                                <input type="text" name="resume" onChange={(e) => setResume(e.target.value)}
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="resume">Resume (Google drive link)</label>
+                                <Form.Control type="text" name="resume" onChange={(e) => setResume(e.target.value)}
                                     value={resume} id="resume" />
-                            </div>
-
-                            <button className="submitBtn" onClick={handleSubmit}>Submit</button>
-                        </form>
-                    </div>
-                </div>
-            }
-
+              </Form.Group>
+              
+              <Button variant="primary" className='col-lg-6'  onClick={handleSubmit} style={{ background: "#4B6587" }} type="submit">
+                Update Profile
+              </Button>
+            </Form>
+            
+          </div>
+          
         </section>
+        </div>
        </>
     )
 }
