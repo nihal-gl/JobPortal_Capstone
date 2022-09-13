@@ -1,44 +1,32 @@
 import React, { useState, useEffect } from "react"
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
-import "./ProfileForm.css"
+import "./UpdateJobs.css"
 import { useSelector } from "react-redux";
 import { collection, onSnapshot } from "firebase/firestore";
 
 const UpdateJobs = () => {
     const { currUserId } = useSelector((state) => state.users.value);
 
-    const [photo, setPhoto] = useState();
-    const [name, setName] = useState();
-    const [title, setTitle] = useState();
-    const [phone, setPhone] = useState();
+    const [company, setCompany] = useState();
+    const [ctc, setCtc] = useState();
+    const [desc, setDesc] = useState();
     const [exp, setExp] = useState();
-    const [edu, setEdu] = useState();
-    const [proj, setProj] = useState();
-    const [skill, setSkill] = useState();
-    const [lang, setLang] = useState();
-    const [linkedin, setLinkedin] = useState();
-    const [twitter, settwitter] = useState();
-    const [github, setGithub] = useState();
-    const [resume, setResume] = useState();
+    const [location, setLocation] = useState();
+    const [title, setTitle] = useState();
+    
+    
     useEffect(() => {
-        onSnapshot(collection(db, 'users'), (users) => {
+        onSnapshot(collection(db, 'jobs'), (users) => {
             // let tempArr = [];
             users.forEach((user) => {
                 if (user.id === currUserId) {
-                    setPhoto(user.data().photo);
-                    setName(user.data().name);
                     setTitle(user.data().title);
-                    setPhone(user.data().phone);
+                    setCompany(user.data().company);
+                    setCtc(user.data().ctc);
+                    setDesc(user.data().desc);
                     setExp(user.data().exp);
-                    setEdu(user.data().edu);
-                    setProj(user.data().proj);
-                    setSkill(user.data().skill);
-                    setLang(user.data().lang);
-                    setLinkedin(user.data().linkedin);
-                    settwitter(user.data().twitter);
-                    setGithub(user.data().github);
-                    setResume(user.data().resume);
+                    setLocation(user.data().location);    
                 }
             });
         })
@@ -47,24 +35,16 @@ const UpdateJobs = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const profileDetails = {
-            photo: photo,
-            name: name,
+        const jobDetails = {
             title: title,
-            phone: phone,
             exp: exp,
-            edu: edu,
-            proj: proj,
-            skill: skill,
-            lang: lang,
-            linkedin: linkedin,
-            twitter: twitter,
-            github: github,
-            resume: resume
+            company:company,
+            ctc:ctc,
+            desc:desc,
+            location:location
         }
-        console.log(profileDetails);
 
-        updateDoc(doc(db, 'users', currUserId), profileDetails).then((res) => {
+        updateDoc(doc(db, 'jobs', currUserId), jobDetails).then((res) => {
             console.log("updated");
         }).catch((err)=>{
             console.log(err.message);
@@ -77,73 +57,39 @@ const UpdateJobs = () => {
                 <div className="form_data">
                     <div className="form_heading">
                         <form>
-                            <h2>Add your profile details</h2>
-                            <div className="form_input">
-                                <label htmlFor="photo">Photograph</label>
-                                <input type="text" name="photo" onChange={(e) => setPhoto(e.target.value)} 
-                                    value={photo} id="job_id" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="name">Name</label>
-                                <input type="text" name="name" onChange={(e) => setName(e.target.value)}
-                                    value={name} id="name" />
-                            </div>
+                            <h2>Update job details</h2>
+                            
                             <div className="form_input">
                                 <label htmlFor="text">Job Title</label>
                                 <input type="text" name="email" onChange={(e) => setTitle(e.target.value)}
                                     value={title} id="title" />
                             </div>
                             <div className="form_input">
-                                <label htmlFor="phone">Phone</label>
-                                <input type="text" name="phone" onChange={(e) => setPhone(e.target.value)}
-                                    value={phone} id="phone" />
+                                <label htmlFor="text">Company</label>
+                                <input type="text" name="email" onChange={(e) => setCompany(e.target.value)}
+                                    value={company} id="company" />
                             </div>
                             <div className="form_input">
-                                <label htmlFor="experience">Experience</label>
-                                <input type="text" name="experience" onChange={(e) => setExp(e.target.value)}
-                                    value={exp} id="experience" />
+                                <label htmlFor="text">Description</label>
+                                <input type="text" name="email" onChange={(e) => setDesc(e.target.value)}
+                                    value={desc} id="desc" />
                             </div>
                             <div className="form_input">
-                                <label htmlFor="education">Education</label>
-                                <input type="text" name="education" onChange={(e) => setEdu(e.target.value)}
-                                    value={edu} id="education" />
+                                <label htmlFor="text">Experience</label>
+                                <input type="text" name="email" onChange={(e) => setExp(e.target.value)}
+                                    value={exp} id="exp" />
                             </div>
                             <div className="form_input">
-                                <label htmlFor="projects">Projects</label>
-                                <input type="text" name="projects" onChange={(e) => setProj(e.target.value)}
-                                    value={proj} id="projects" />
+                                <label htmlFor="text">CTC</label>
+                                <input type="text" name="email" onChange={(e) => setCtc(e.target.value)}
+                                    value={ctc} id="ctc" />
                             </div>
                             <div className="form_input">
-                                <label htmlFor="skills">Skills</label>
-                                <input type="text" name="skills" onChange={(e) => setSkill(e.target.value)}
-                                    value={skill} id="skills" />
+                                <label htmlFor="text">Location</label>
+                                <input type="text" name="email" onChange={(e) => setLocation(e.target.value)}
+                                    value={location} id="location" />
                             </div>
-                            <div className="form_input">
-                                <label htmlFor="languages">Languages</label>
-                                <input type="text" name="languages" onChange={(e) => setLang(e.target.value)}
-                                    value={lang} id="languages" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="linkedin">LinkedIn</label>
-                                <input type="text" name="linkedin" onChange={(e) => setLinkedin(e.target.value)}
-                                    value={linkedin} id="linkedin" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="tweeter">Twitter</label>
-                                <input type="text" name="tweeter" onChange={(e) => settwitter(e.target.value)}
-                                    value={twitter} id="tweeter" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="github">Github</label>
-                                <input type="text" name="github" onChange={(e) => setGithub(e.target.value)}
-                                    value={github} id="github" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="resume">Resume (Google drive link)</label>
-                                <input type="text" name="resume" onChange={(e) => setResume(e.target.value)}
-                                    value={resume} id="resume" />
-                            </div>
-
+                            
                             <button className="submitBtn" onClick={handleSubmit}>Submit</button>
                         </form>
                     </div>

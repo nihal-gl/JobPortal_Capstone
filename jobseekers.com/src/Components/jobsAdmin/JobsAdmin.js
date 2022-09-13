@@ -37,11 +37,7 @@ const JobsAdmin = () => {
     }
 
     const handleUpdate = (id) => {
-        updateDoc(doc(db, 'jobs', id), {
-            title: "updated title"
-        }).then((res)=>{
-            alert("updated");
-        })
+        navigate('/updatejob')
     }
 
     //used for setting the filters
@@ -166,7 +162,7 @@ const JobsAdmin = () => {
                                         <span>{item.desc}</span>
                                         <br />
                                         <button className='btn btn-success apply-btn'>View Applicants</button>
-                                        <button className='btn btn-primary apply-btn'>Update</button>
+                                        <button className='btn btn-primary apply-btn' onClick={()=>handleUpdate(item.id)}>Update</button>
                                         <button className='btn btn-danger apply-btn'onClick={()=>handleDelete(item.id)}>Delete</button>
                                         <div className='history-save'>
                                             <div className='history'>
