@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { onSnapshot, collection } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import Navbar from "../common/navbar/Navbar";
 
 export const Employee = () => {
 
@@ -47,6 +48,7 @@ export const Employee = () => {
 
   return (
     isLoading ? <h2>Loading...</h2> : <>
+    <Navbar></Navbar>
       <div className="container emp-profile">
         <form method="">
           <div className="row">

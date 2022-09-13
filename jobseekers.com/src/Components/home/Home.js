@@ -3,10 +3,13 @@ import { NavLink } from 'react-router-dom';
 import './home.css';
 import jobs from './dummyjobs';
 import JobList from './spectator_view/JobList';
+import Navbar from '../common/navbar/Navbar';
+import Footer from '../common/footer/Footer';
 
 const Home = () => {
   return (
     <>
+    <Navbar></Navbar>
       <section class="bg-home">
         <div class="home-center">
           <div class="home-desc-center">
@@ -161,7 +164,7 @@ const Home = () => {
     </section>
 
     {/*----------------------------------------------------------------------ANOTHER SECTION--PLEASE DO NOT TOUCH------------------------------------- */}
-   
+   <Footer></Footer>
     </>
 
   )

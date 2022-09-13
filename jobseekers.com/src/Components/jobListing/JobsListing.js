@@ -6,6 +6,7 @@ import { collection, onSnapshot, updateDoc, doc, arrayUnion } from "firebase/fir
 import { db } from '../../firebase/config';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../common/navbar/Navbar';
 
 
 const JobsListing = () => {
@@ -146,7 +147,9 @@ const JobsListing = () => {
 
 
     return (
-        <div className='parent-container'>
+        <>
+        <Navbar></Navbar>
+         <div className='parent-container'>
             <button onClick={navigateToApplied}>Applied jobs</button>
             <button onClick={navigateToSaved}>Saved jobs</button>
             <div className="filter-container">
@@ -256,6 +259,9 @@ const JobsListing = () => {
             </div>
 
         </div>
+        
+        </>
+       
     )
 }
 export default JobsListing;
