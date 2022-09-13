@@ -25,7 +25,7 @@ function App() {
   return (
     <BrowserRouter>
 
-      <Navbar></Navbar>
+  
       <Routes>
         <Route path="/" element={<Home></Home>} /> {/* Public home page */}
         <Route path="/about" element={<About />} />
@@ -43,10 +43,13 @@ function App() {
         <Route path="/applicants/:id" element={<Admin child={<Applicants></Applicants>}></Admin>}></Route>
         <Route path="/updatejob/:id" element={<Admin child={<UpdateJobs></UpdateJobs>}></Admin>}></Route>
         <Route path="/bulkupload" element={<Admin child={<Bulk></Bulk>}></Admin>}></Route>
+<<<<<<< HEAD
+=======
         <Route path="/userlist" element={<Admin child={<UserList></UserList>}></Admin>}></Route>
         
+>>>>>>> 497c1957fa92b5b3655e1bae4cd039eff22c3957
       </Routes>
-      <Footer></Footer>
+
     </BrowserRouter>
   );
 }

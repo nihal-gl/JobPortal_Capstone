@@ -1,7 +1,18 @@
 import { NavLink } from 'react-router-dom';
 import './sidebar.scss'
+import { useNavigate } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setUserRole } from '../../../../useSlice';
 
 const Sidebar = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const logOut = (e) => {
+        e.preventDefault()
+        dispatch(setUserRole(""))
+        navigate("/")
+    };
 
     return (
         <div className='sidebar'>
@@ -74,7 +85,7 @@ const Sidebar = () => {
                     </li>
                     <li>
                         <i className="fa fa-solid fa-right-from-bracket icon"></i>
-                        <span>Logout</span>
+                        <span onClick={logOut}>Logout</span>
 
                     </li>
                 </ul>
