@@ -19,6 +19,10 @@
   }
 }
 
+.nav-item{
+  list-style: none;
+}
+
 
 @keyframes slideIn {
   0% {
