@@ -1,9 +1,14 @@
 import './JobsAdmin.css';
 import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBriefcase, faIndianRupeeSign, faLocationDot, faFileLines, faClockRotateLeft, faStar } from '@fortawesome/free-solid-svg-icons'
+import { collection, onSnapshot, doc, setDoc, deleteDoc, updateDoc } from "firebase/firestore";
 import { collection, onSnapshot, doc, deleteDoc } from "firebase/firestore";
 import { db } from '../../firebase/config';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
+import Navbar from '../admin-panel/adminComponents/navbar/Navbar';
+import Sidebar from '../admin-panel/adminComponents/sidebar/Sidebar';
 
 
 const JobsAdmin = () => {
@@ -23,9 +28,7 @@ const JobsAdmin = () => {
 
     }, [])
 
-    const handleAddJob = (e) => {
-        navigate('/addjob')
-    }
+
 
     const handleDelete = (id) => {
         deleteDoc(doc(db, 'jobs', id)).then((res) => {
@@ -33,13 +36,9 @@ const JobsAdmin = () => {
         })
     }
 
-    const handleUpdate = (id) => {
-        navigate('/updatejob/' + id)
-    }
 
-    const handleUserList = () => {
-        navigate('/userlist')
-    }
+
+   
 
     //utility functions
     const calculateTime = (time) => {
@@ -54,12 +53,16 @@ const JobsAdmin = () => {
     }
 
     return (
-        <div className='admin-job-list-parent-container container'>
-            <button className='btn btn-primary'>SHOW JOB LIST</button>
-            <button className='btn btn-primary' onClick={handleAddJob}>ADD A JOB</button>
-            <button className='btn btn-primary' onClick={handleUserList} >SHOW USERS LIST</button>
+        <>
 
-            {/* ***************** NEW CARD UI ******************* */}
+            <div className='joblistHome'>
+                <Navbar></Navbar>
+                <div className='joblistcontainer'>
+                    <Sidebar></Sidebar>
+                    <div className='container joblistbox'>
+                        <h1 className='text-center'>Job List</h1>
+                        <div className='joblisting'>
+                            {/* ***************** NEW CARD UI ******************* */}
             <div className='admin-job-list row text-center'>
                 {
                     jobs.map((item) => (
@@ -101,7 +104,16 @@ const JobsAdmin = () => {
                 }
             </div>
             {/* ***************** NEW CARD UI ******************* */}
-        </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </>
+
+
     )
 }
 export default JobsAdmin;

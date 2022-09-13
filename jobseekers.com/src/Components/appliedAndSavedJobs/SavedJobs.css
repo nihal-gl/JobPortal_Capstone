@@ -1,6 +1,10 @@
-.saved-job-parent-container {
+.saved-job-parent-container{
+    margin-top: 10%;
     padding: 80px;
 }
+.saved-job-parent-container .row {
+    margin-right: 4px;
+    }
 .saved-job-container {
     margin-top: 80px;
 }

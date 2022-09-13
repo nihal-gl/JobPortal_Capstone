@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { collection, onSnapshot, updateDoc, doc, arrayUnion } from "firebase/firestore";
 import { db } from '../../firebase/config';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import NavbarJobList from './navbarJobList/NavbarJobList';
 import Navbar from '../common/navbar/Navbar';
 
 
@@ -131,23 +133,26 @@ const JobsListing = () => {
             console.log("job added to saved job array");
         }).catch((err) => {
             console.log(err);
+
         })
     }
 
 
+
     return (
         <>
-            <Navbar></Navbar>
-            <div className='parent-container'>
-                
-                <div className="filter-container">
-                    <h4>Filter</h4>
-                    <div>
-                        <h6>Location</h6>
-                        <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "all")}>All</button>
-                        <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "remote")}>Remote</button>
-                        <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "office")}>Office</button>
-                    </div>
+        <NavbarJobList></NavbarJobList>
+         <div className='parent-container'>
+            
+            <div className="filter-container">
+                <h4>Filter</h4>
+                <div>
+                    <h6>Location</h6>
+                    <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "all")}>All</button>
+                    <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "remote")}>Remote</button>
+                    <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "office")}>Office</button>
+                </div>
+
 
                     <div>
                         <h6>Experience</h6>

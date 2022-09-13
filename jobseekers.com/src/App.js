@@ -46,7 +46,7 @@ function App() {
         <Route path="/userlist" element={<Admin child={<UserList></UserList>}></Admin>}></Route>
 
       </Routes>
-
+      <Footer></Footer>
     </BrowserRouter>
   );
 }

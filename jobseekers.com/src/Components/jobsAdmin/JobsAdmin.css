@@ -1,3 +1,13 @@
+.joblistcontainer{
+    display: flex;
+}
+.joblistbox{
+    align-items: center;
+    justify-content: center;
+}
+.joblistbox .container{
+    margin-top: 20px;
+}
 .admin-job-list {
     margin-top: 80px;
 }

@@ -3,6 +3,7 @@ import { onSnapshot, collection, doc, arrayUnion, updateDoc, arrayRemove } from 
 import { db } from "../../firebase/config";
 import { useSelector } from "react-redux";
 import './AppliedJobs.css';
+import NavbarJobList from "../jobListing/navbarJobList/NavbarJobList";
 
 const AppliedJobs = () => {
     const { currUserId } = useSelector((state) => state.users.value); // use this to get the current user's id
@@ -58,6 +59,8 @@ const AppliedJobs = () => {
     }
 
     return (
+       <>
+       <NavbarJobList></NavbarJobList>
         <div className="applied-job-parent-container">
             {/* ************************New card UI ********************************************/}
             <h1>Applied Jobs</h1>
@@ -103,6 +106,7 @@ const AppliedJobs = () => {
             </div>
             {/* ************************New card UI ********************************************/}
         </div>
+       </>
     )
 }
 export default AppliedJobs
