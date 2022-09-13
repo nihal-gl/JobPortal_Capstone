@@ -5,6 +5,7 @@ import "./ProfileForm.css"
 import { useSelector } from "react-redux";
 import { collection, onSnapshot } from "firebase/firestore";
 import Navbar from "../common/navbar/Navbar";
+import { FaOptinMonster } from "react-icons/fa";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 const ProfileForm = () => {
