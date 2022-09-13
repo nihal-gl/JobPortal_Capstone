@@ -69,45 +69,45 @@ const JobList = () => {
       {/* ---------------------------------------------------------JOB SEARCH */}
 
       <div className='jobSearch'>
-      <hr />
-      <div className='text-center'>
-        <input type="text" placeholder='search...' onChange={e => setQuery(e.target.value)} />
-        <p> Search by location or company</p>
-      </div>
-      <hr />
+        <hr />
+        <div className='text-center'>
+          <input type="text" placeholder='search...' onChange={e => setQuery(e.target.value)} />
+          <p> Search by location or company</p>
+        </div>
+        <hr />
 
-      <div className='jobDescContainer row text-center'>
-        {
-          items.filter(item => item.location.includes(query) || item.company.includes(query)).map((item) => {
-            const { id, role, company, location, experience } = item;
-            return (
-              < div className="col-10 col-md-4 mt-5" key={id} >
-                <div className="card p-2">
-                  <div className="d-flex align-items-center">
-                    <div className="image"> <img src="" className="rounded" /></div>
-                    <div className="ml-3 w-100" key={id} >
-                      <h4 className="mb-0 mt-0 textLeft">{role}</h4>
-                      <span className="text-left">{company}</span>
-                      <div className="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
-                        <div className="d-flex flex-column">
-                          <span className="number3">Location</span> <span className="articles">{location}</span> </div>
-                        <div className="d-flex flex-column">
-                          <span className="number3">Experience</span> <span className="followers">{experience}</span> </div>
-                        <div className="d-flex flex-column">
+        <div className='jobDescContainer row text-center'>
+          {
+            items.filter(item => item.location.includes(query) || item.company.includes(query)).map((item) => {
+              const { id, role, company, location, experience } = item;
+              return (
+                < div className="col-10 col-md-4 mt-5" key={id} >
+                  <div className="card p-2">
+                    <div className="d-flex align-items-center">
+                      <div className="image"> <img src="" className="rounded" /></div>
+                      <div className="ml-3 w-100" key={id} >
+                        <h4 className="mb-0 mt-0 textLeft">{role}</h4>
+                        <span className="text-left">{company}</span>
+                        <div className="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                          <div className="d-flex flex-column">
+                            <span className="number3">Location</span> <span className="articles">{location}</span> </div>
+                          <div className="d-flex flex-column">
+                            <span className="number3">Experience</span> <span className="followers">{experience}</span> </div>
+                          <div className="d-flex flex-column">
+                          </div>
+                          <button className='btn btn-success d-flex' >View</button>
                         </div>
-                        <button className='btn btn-success d-flex' >View</button>
+
                       </div>
-
                     </div>
-                  </div>
 
+                  </div>
                 </div>
-              </div>
-            )
-          })
-        }
-      </div>
-      <hr />
+              )
+            })
+          }
+        </div>
+        <hr />
       </div>
 
     </>
