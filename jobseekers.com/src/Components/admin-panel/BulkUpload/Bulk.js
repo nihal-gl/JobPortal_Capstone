@@ -50,6 +50,10 @@ function Bulk() {
       setExcelData(null);
     }
   }
+
+  const addJobs = () => {
+    console.log(excelData);
+  }
   
   return (
     <div className="container">
@@ -93,7 +97,8 @@ function Bulk() {
               <tbody>
                 <Data excelData={excelData}/>
               </tbody>
-            </table>            
+            </table>  
+            <button onClick={addJobs}></button>          
           </div>
         )}       
       </div>
