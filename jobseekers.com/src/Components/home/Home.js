@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import './home.css';
 import jobs from './dummyjobs';
+import JobList from './spectator_view/JobList';
 
 const Home = () => {
   return (
@@ -22,6 +23,11 @@ const Home = () => {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className='secondSection'>
+        <JobList></JobList>
+
       </section>
 
       <section class="secondSection">
@@ -89,6 +95,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
 
      
 
