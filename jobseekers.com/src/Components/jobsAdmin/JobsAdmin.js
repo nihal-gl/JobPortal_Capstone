@@ -37,7 +37,11 @@ const JobsAdmin = () => {
     }
 
     const handleUpdate = (id) => {
-        navigate('/updatejob')
+        navigate('/updatejob/'+id)
+    }
+
+    const handleUserList = () => {
+        navigate('/userlist')
     }
 
     //used for setting the filters
@@ -134,8 +138,8 @@ const JobsAdmin = () => {
         <div className='container'>
             <button className='btn btn-primary'>SHOW JOB LIST</button>
             <button className='btn btn-primary' onClick={handleAddJob}>ADD A JOB</button>
-            <button className='btn btn-primary' >SHOW USERS LIST</button>
-            <div className='joblisting'>
+            <button className='btn btn-primary' onClick={handleUserList} >SHOW USERS LIST</button>
+            <div className='joblisting'> 
                 <div className="card-container container  ">
                     <div className="row">
                         {
