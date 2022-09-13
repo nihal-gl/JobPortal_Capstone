@@ -1,0 +1,51 @@
+.saved-job-parent-container .row {
+    margin-right: 4px;
+}
+.saved-job-card {
+    background-color: #92B4EC;
+    box-shadow: 5px 10px 18px #888888;
+    transition: 0.5s;
+    width: 500px;;
+}
+.saved-job-parent-container .card:hover {
+    transform: scale(1.05);
+}
+.saved-job-parent-container .job-title {
+    font-size: 16px;
+    font-weight: 500;
+}
+.saved-job-parent-container .company-name {
+    max-width: 250px;
+    font-size: 14px;
+}
+.saved-job-parent-container .card-list {
+    list-style: none;
+    padding-left: 0;
+    font-size: 12px;
+    display: flex;
+    margin-bottom: 0px;
+}
+.saved-job-parent-container .card-list span {
+    margin: 10px;
+    
+}
+.saved-job-parent-container .card-body span {
+    font-size: 12px;
+    margin: 10px;
+}
+.history {
+    margin: 10px;
+    background-color: #c1c6cf;
+    font-size: 10px;
+    border-radius: 2px;
+    max-width:fit-content;
+    padding: 3px;
+    margin-top: 0px;
+}
+.history span {
+    font-size: 10px;
+}
+.history-save {
+    display: flex;
+    justify-content:end;
+}
