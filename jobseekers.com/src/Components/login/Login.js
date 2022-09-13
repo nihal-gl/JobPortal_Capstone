@@ -99,7 +99,7 @@ const Login = () => {
                     console.log('navigate to admin pages');
                     navigate('/adminpanel') // intended page to route (admin dashboard )
                     // navigate('/adminpanel') // intended page to route (admin dashboard )
-                    navigate('/jobadmin') // intended page to route (admin dashboard )
+                   
                 } else {
                     dispatch(setUserRole({role: 'user'}));
                     dispatch(setUserId({id: res.docs[0].id}))

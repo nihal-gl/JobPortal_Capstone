@@ -2,20 +2,20 @@ import React from 'react';
 import './navbar.css';
 import { NavLink } from 'react-router-dom';
 import { NavDropdown } from 'react-bootstrap';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setUserRole } from '../../../useSlice';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const {currRole} = useSelector((state)=>state.users.value);
+  const { currRole } = useSelector((state) => state.users.value);
   // const {currUserId} = useSelector((state)=>state.users.value);
-  const dispatch= useDispatch()
-  const logOut= (e) =>{
+  const dispatch = useDispatch()
+  const logOut = (e) => {
     e.preventDefault()
-dispatch(setUserRole(""))
-navigate("/")
+    dispatch(setUserRole(""))
+    navigate("/")
   };
   console.log("render")
   return (
@@ -36,55 +36,13 @@ navigate("/")
               <NavLink className="nav-link " to="/">Home</NavLink>
             </li>
 
-            {/*------------------------------------DROPDOWN---------------------------- */}
-{/* 
-            <li className="nav-item">
-              <NavLink className="nav-link " to="/about">About</NavLink>
-            </li>  */}
-
-            {/* <div class="dropdown">
-              <button
-                class="btn btn-primary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-mdb-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown button
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div> */}
-
-            {/* <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Click Me!
-              </a>
-              <div class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-              </li> */}
-
-            {/*------------------------------------DROPDOWN---------------------------- */}
-
-
-
             <li className="nav-item">
               <NavLink className="nav-link " to="/explorejobs" >Jobs</NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/updateprofile" >Update Profile</NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className=" btn btn-custom btn-sm" to="/addjob" ><i class="fa fa-solid fa-upload"></i>Post a Job</NavLink>
-            </li>
-            {/* <a href="post-a-job.html" class="btn btn-custom btn-sm"><i class="mdi mdi-cloud-upload"></i> Post a Job</a> */}
+
           </ul>
         </div>
 
@@ -96,39 +54,35 @@ navigate("/")
           <li className="nav-item">
             <a className="nav-link p-2" href="https://twitter.com/" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" className="navbar-nav-svg" viewBox="0 0 512 416.32" role="img" focusable="false"><title>Twitter</title><path fill="currentColor" d="M160.83 416.32c193.2 0 298.92-160.22 298.92-298.92 0-4.51 0-9-.2-13.52A214 214 0 0 0 512 49.38a212.93 212.93 0 0 1-60.44 16.6 105.7 105.7 0 0 0 46.3-58.19 209 209 0 0 1-66.79 25.37 105.09 105.09 0 0 0-181.73 71.91 116.12 116.12 0 0 0 2.66 24c-87.28-4.3-164.73-46.3-216.56-109.82A105.48 105.48 0 0 0 68 159.6a106.27 106.27 0 0 1-47.53-13.11v1.43a105.28 105.28 0 0 0 84.21 103.06 105.67 105.67 0 0 1-47.33 1.84 105.06 105.06 0 0 0 98.14 72.94A210.72 210.72 0 0 1 25 370.84a202.17 202.17 0 0 1-25-1.43 298.85 298.85 0 0 0 160.83 46.92"></path></svg></a>
           </li>
-          {/* <li className="nav-item">
-            <NavLink className="nav-link p-2" to="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="Open Collective">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" fill-rule="evenodd" className="navbar-nav-svg" viewBox="0 0 40 41" role="img" focusable="false"><title>Open Collective</title><path fill-opacity=".4" d="M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z"></path><path d="M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z"></path>
-              </svg></NavLink>
-          </li> */}
-         
-        </ul>
-       
-        {  currRole ?
-        <ul>
-        <li className='nav-item'>
-      <button className="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" onClick={logOut}>Logout</button>
-      </li>
-      {console.log(currRole)}
-      </ul>
-        
-        
-        
-        :
 
-        <ul>     
-        <li className="nav-item">
-            <NavLink className="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" to="/login">Login</NavLink>
-          </li>
-          <li className='nav-item'>
-            <NavLink className="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" to="/signup">Signup</NavLink>
-          </li>
-          {console.log(currRole)}
+
         </ul>
-       }
-      </nav> 
-          
-     
+
+        {currRole ?
+          <ul>
+            <li className='nav-item'>
+              <button className="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" onClick={logOut}>Logout</button>
+            </li>
+            {console.log(currRole)}
+          </ul>
+
+
+
+          :
+
+          <ul>
+            <li className="nav-item">
+              <NavLink className="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" to="/login">Login</NavLink>
+            </li>
+            <li className='nav-item'>
+              <NavLink className="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" to="/signup">Signup</NavLink>
+            </li>
+            {console.log(currRole)}
+          </ul>
+        }
+      </nav>
+
+
     </>
   )
 }

@@ -66,6 +66,8 @@ const JobList = () => {
         }
       </div>
 
+      {/* ---------------------------------------------------------JOB SEARCH */}
+
       <div className='jobSearch'>
       <hr />
       <div className='text-center'>
