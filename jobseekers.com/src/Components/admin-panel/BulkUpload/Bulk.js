@@ -1,75 +1,87 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import { Data } from './Data';
 import * as XLSX from 'xlsx'
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../../firebase/config';
 
 function Bulk() {
-  
+
   // on change states
-  const [excelFile, setExcelFile]=useState(null);
-  const [excelFileError, setExcelFileError]=useState(null);  
- 
+  const [excelFile, setExcelFile] = useState(null);
+  const [excelFileError, setExcelFileError] = useState(null);
+
   // submit
-  const [excelData, setExcelData]=useState(null);
+  const [excelData, setExcelData] = useState(null);
   // it will contain array of objects
 
   // handle File
-  const fileType=['application/vnd.ms-excel'];
-  const handleFile = (e)=>{
+  const fileType = ['application/vnd.ms-excel'];
+  const handleFile = (e) => {
     let selectedFile = e.target.files[0];
-    if(selectedFile){
+    if (selectedFile) {
       // console.log(selectedFile.type);
-      if(selectedFile&&fileType.includes(selectedFile.type)){
+      if (selectedFile && fileType.includes(selectedFile.type)) {
         let reader = new FileReader();
         reader.readAsArrayBuffer(selectedFile);
-        reader.onload=(e)=>{
+        reader.onload = (e) => {
           setExcelFileError(null);
           setExcelFile(e.target.result);
-        } 
+        }
       }
-      else{
+      else {
         setExcelFileError('Please select only excel file types');
         setExcelFile(null);
       }
     }
-    else{
+    else {
       console.log('plz select your file');
     }
   }
 
   // submit function
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(excelFile!==null){
-      const workbook = XLSX.read(excelFile,{type:'buffer'});
+    if (excelFile !== null) {
+      const workbook = XLSX.read(excelFile, { type: 'buffer' });
       const worksheetName = workbook.SheetNames[0];
-      const worksheet=workbook.Sheets[worksheetName];
+      const worksheet = workbook.Sheets[worksheetName];
       const data = XLSX.utils.sheet_to_json(worksheet);
       setExcelData(data);
     }
-    else{
+    else {
       setExcelData(null);
     }
   }
 
   const addJobs = () => {
-    console.log(excelData);
+    excelData.forEach(async (item) => {
+      const res = await addDoc(collection(db, "jobs"), {
+        title: item.title,
+        company: item.company,
+        ctc: item.ctc,
+        exp: item.exp,
+        desc: item.desc,
+        location: item.location,
+        postedOn: Date.now()
+      });
+    });
   }
-  
+
   return (
     <div className="container">
 
       {/* upload file section */}
       <div className='form'>
         <form className='form-group' autoComplete="off"
-        onSubmit={handleSubmit}>
+          onSubmit={handleSubmit}>
           <label><h5>Upload Excel file</h5></label>
           <br></br>
           <input type='file' className='form-control'
-          onChange={handleFile} required></input>                  
-          {excelFileError&&<div className='text-danger'
-          style={{marginTop:5+'px'}}>{excelFileError}</div>}
+            onChange={handleFile} required></input>
+          {excelFileError && <div className='text-danger'
+            style={{ marginTop: 5 + 'px' }}>{excelFileError}</div>}
           <button type='submit' className='btn btn-success'
-          style={{marginTop:5+'px'}}>Submit</button>
+            style={{ marginTop: 5 + 'px' }}>Submit</button>
         </form>
       </div>
 
@@ -77,30 +89,29 @@ function Bulk() {
       <hr></hr>
 
       {/* view file section */}
-      <h5>View Excel file</h5>
+      <h5>Preview</h5>
       <div className='viewer'>
-        {excelData===null&&<>No file selected</>}
-        {excelData!==null&&(
+        {excelData === null && <>No file selected</>}
+        {excelData !== null && (
           <div className='table-responsive'>
             <table className='table'>
               <thead>
                 <tr>
-                  <th scope='col'>ID</th>
-                  <th scope='col'>company</th>
-                  <th scope='col'>ctc</th>
-                  <th scope='col'>exp</th>
-                  <th scope='col'>location</th>
-                  <th scope='col'>title</th>
-                         
+                  <th scope='col'>Company</th>
+                  <th scope='col'>CTC</th>
+                  <th scope='col'>Experience</th>
+                  <th scope='col'>Location</th>
+                  <th scope='col'>Title</th>
+
                 </tr>
               </thead>
               <tbody>
-                <Data excelData={excelData}/>
+                <Data excelData={excelData} />
               </tbody>
-            </table>  
-            <button onClick={addJobs}></button>          
+            </table>
+            <button className='btn btn-success' onClick={addJobs}>Add Job</button>
           </div>
-        )}       
+        )}
       </div>
 
     </div>
