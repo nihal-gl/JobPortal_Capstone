@@ -41,7 +41,7 @@ function App() {
         <Route path="/savedjobs" element={<User child={<SavedJobs></SavedJobs>}></User>}></Route>
         <Route path="/appliedjobs" element={<User child={<AppliedJobs></AppliedJobs>}></User>}></Route>
         <Route path="/applicants/:id" element={<Admin child={<Applicants></Applicants>}></Admin>}></Route>
-        <Route path="/updatejob" element={<Admin child={<UpdateJobs></UpdateJobs>}></Admin>}></Route>
+        <Route path="/updatejob/:id" element={<Admin child={<UpdateJobs></UpdateJobs>}></Admin>}></Route>
         <Route path="/bulkupload" element={<Admin child={<Bulk></Bulk>}></Admin>}></Route>
         <Route path="/userlist" element={<Admin child={<UserList></UserList>}></Admin>}></Route>
 

@@ -5,6 +5,7 @@ import "./ProfileForm.css"
 import { useSelector } from "react-redux";
 import { collection, onSnapshot } from "firebase/firestore";
 import Navbar from "../common/navbar/Navbar";
+import { FaOptinMonster } from "react-icons/fa";
 
 const ProfileForm = () => {
     const { currUserId } = useSelector((state) => state.users.value);
