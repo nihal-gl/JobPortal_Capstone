@@ -1,19 +1,20 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import './sidebar.scss'
 
 const Sidebar = () => {
+   
     return (
         <div className='sidebar'>
             <div className="top">
                 <span className="logo">Apple</span>
             </div>
-            <hr />         
+            <hr />
             <div className="center">
                 <ul>
                     <p className="title">MAIN</p>
                     <li>
-                    <i class="fa fa-solid fa-desktop icon"></i>
-                    <NavLink className="nav-link" to="/"><span>Home</span></NavLink>
+                        <i class="fa fa-solid fa-desktop icon"></i>
+                        <NavLink className="nav-link" to="/"><span>Home</span></NavLink>
                     </li>
                     <p className="title">LISTS</p>
                     <li>
@@ -24,11 +25,15 @@ const Sidebar = () => {
                     <li>
                         <i className="fa fa-solid fa-briefcase icon"></i>
                         <NavLink className="nav-link" to="/joblist"><span>Job Lists</span></NavLink>
-                        
+
                     </li>
                     <li>
-                    <i class="fa fa-solid fa-plus icon"></i>
+                        <i class="fa fa-solid fa-plus icon"></i>
                         <NavLink className="nav-link" to="/addjob"><span>Add Job</span></NavLink>
+                    </li>
+                    <li>
+                        <i class="fa fa-solid fa-plus icon"></i>
+                        <NavLink className="nav-link" to="/recentlyHired"><span>Bulk Upload</span></NavLink>
                     </li>
                     {/* <li>
                         <i className="fa fa-solid fa-bookmark icon"></i>
@@ -62,12 +67,13 @@ const Sidebar = () => {
                     </li> */}
                     <p className="title">ADMIN</p>
                     <li>
-                    <i className="fa fa-solid fa-right-from-bracket icon"></i>
+                        <i className="fa fa-solid fa-right-from-bracket icon"></i>
                         <span>Profile</span>
                     </li>
                     <li>
-                    <i className="fa fa-solid fa-right-from-bracket icon"></i>
+                        <i className="fa fa-solid fa-right-from-bracket icon"></i>
                         <span>Logout</span>
+                        
                     </li>
                 </ul>
             </div>
