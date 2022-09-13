@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emailjs/browser": "^3.7.0",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -23,14 +22,13 @@
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
-    "react-toastify": "^9.0.8",
     "recharts": "^2.1.14",
     "redux": "^4.2.0",
     "sass": "^1.54.9",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5",
     "@emailjs/browser": "^3.7.0",
- "react-toastify": "^9.0.8"
+    "react-toastify": "^9.0.8"
   },
   "scripts": {
     "start": "react-scripts start",

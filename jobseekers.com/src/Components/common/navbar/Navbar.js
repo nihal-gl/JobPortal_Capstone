@@ -1,9 +1,25 @@
 import React from 'react';
 import './navbar.css';
 import { NavLink } from 'react-router-dom';
+import { NavDropdown } from 'react-bootstrap';
+import {useNavigate} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setUserRole } from '../../../useSlice';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const {currRole} = useSelector((state)=>state.users.value);
+  // const {currUserId} = useSelector((state)=>state.users.value);
+  const dispatch= useDispatch()
+  const logOut= (e) =>{
+    e.preventDefault()
+dispatch(setUserRole(""))
+navigate("/")
+  };
+  console.log("render")
   return (
+
     <>
       <nav className="navbar fixed-top navbar-expand navbar-dark flex-column flex-md-row bd-navbar align ">
 
@@ -21,10 +37,10 @@ const Navbar = () => {
             </li>
 
             {/*------------------------------------DROPDOWN---------------------------- */}
-
+{/* 
             <li className="nav-item">
               <NavLink className="nav-link " to="/about">About</NavLink>
-            </li> 
+            </li>  */}
 
             {/* <div class="dropdown">
               <button
@@ -47,7 +63,6 @@ const Navbar = () => {
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Click Me!
               </a>
-
               <div class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
@@ -86,15 +101,34 @@ const Navbar = () => {
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" fill-rule="evenodd" className="navbar-nav-svg" viewBox="0 0 40 41" role="img" focusable="false"><title>Open Collective</title><path fill-opacity=".4" d="M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z"></path><path d="M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z"></path>
               </svg></NavLink>
           </li> */}
-          <li className="nav-item">
+         
+        </ul>
+       
+        {  currRole ?
+        <ul>
+        <li className='nav-item'>
+      <button className="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" onClick={logOut}>Logout</button>
+      </li>
+      {console.log(currRole)}
+      </ul>
+        
+        
+        
+        :
+
+        <ul>     
+        <li className="nav-item">
             <NavLink className="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" to="/login">Login</NavLink>
           </li>
-          <li>
+          <li className='nav-item'>
             <NavLink className="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" to="/signup">Signup</NavLink>
           </li>
+          {console.log(currRole)}
         </ul>
-
-      </nav>
+       }
+      </nav> 
+          
+     
     </>
   )
 }
