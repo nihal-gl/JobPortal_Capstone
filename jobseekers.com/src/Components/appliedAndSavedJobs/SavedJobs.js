@@ -24,7 +24,7 @@ const SavedJobs = () => {
             totalJobs.forEach((item) => {
                 tempArr.forEach(job => {
                     if (item.id === job) {
-                        arr.push(item.data());
+                        arr.push({...item.data(), id: item.id});
                     }
                 });
             })
@@ -34,7 +34,7 @@ const SavedJobs = () => {
 
     const calculateTime = (time) => {
         const givenTime = new Date(time);
-        const currTime = new Date(Date.now())  
+        const currTime = new Date(Date.now())
         const diffDays = parseInt((currTime - givenTime) / (1000 * 60 * 60 * 24), 10);
         return diffDays;
     }
@@ -42,22 +42,29 @@ const SavedJobs = () => {
         // add job id in users collection
         updateDoc(doc(db, 'users', currUserId), {
             appliedJobs: arrayUnion(jobId)
-        }).then((res)=>{
-            console.log("job added to current user");
-        }).catch((err)=> {
+        }).then((res) => {
+            alert("Applied successfully")
+        }).catch((err) => {
             console.log(err);
-        }) 
+        })
         // add user id in jobs collection
         updateDoc(doc(db, 'jobs', jobId), {
             applicants: arrayUnion(currUserId)
-        }).then((res)=>{
+        }).then((res) => {
             console.log("applicant added to current job");
-        }).catch((err)=> {
+        }).catch((err) => {
             console.log(err);
-        }) 
+        })
     }
-    const removeJob = () => {
-        console.log("remove job to be implemented");
+    const handleRemoveJobs = (jobId) => {
+        updateDoc(doc(db, 'users', currUserId), {
+            savedJobs: arrayRemove(jobId)
+        }).then((res) => {
+            console.log("job removed from applied job array");
+            alert("Job removed from applied jobs")
+        }).catch((err) => {
+            console.log(err);
+        })
     }
 
     return (
@@ -65,56 +72,47 @@ const SavedJobs = () => {
        <NavbarJobList></NavbarJobList>
         <div className="saved-job-parent-container">
             <h1>Saved job</h1>
-            <div className="container">
-                <div className="row">
-                    {
-                        data.map((item) => (
-                            <div className="card saved-job-card">
-                                <div className="card-body">
-                                    <h4 className='job-title'>{item.title}</h4>
-                                    <p className='company-name'>{item.company}</p>
-                                    <ul className='card-list'>
-                                        <li>
-                                            <FontAwesomeIcon icon={faBriefcase} />
-                                            {/* always write years, no plus symbol in json */}
-                                            <span>{item.exp}+ Yrs</span>
-                                        </li>
-                                        <li>
-                                            <FontAwesomeIcon icon={faIndianRupeeSign} />
-                                            {/* always write numbers, lpa will not be added in json */}
-                                            <span>{item.ctc > 0 ? item.ctc + " LPA" : "Not disclosed"}</span>
-                                        </li>
-                                        <li>
-                                            <FontAwesomeIcon icon={faLocationDot} />
-                                            {/* only 2 locations are permitted in json*/}
-                                            <span>{item.location}</span>
-                                        </li>
-                                    </ul>
+            {/* ************************New card UI ********************************************/}
+            <div className='saved-job-container row text-center'>
+                {
+                    data.map((item) => (
+                        < div className="col-10 col-md-4 mt-5"  >
+                            <div className="card p-2">
+                                <div className="d-flex align-items-center">
 
-                                    <FontAwesomeIcon icon={faFileLines} />
-                                    <span>{item.desc}</span>
-                                    <br />
-                                    <button onClick={()=>handleApply(item.id)} className='btn btn-primary apply-btn'>Apply</button>
-                                    <div className='history-save'>
-                                        <div className='history'>
-                                            <FontAwesomeIcon icon={faClockRotateLeft} />
-
-                                            <span>
-                                                {calculateTime(item.postedOn)} DAYS AGO
-                                            </span>
+                                    <div className="ml-3 w-100"  >
+                                        <div className="heading-timestamp">
+                                            <h4 className="mb-0 mt-0 textLeft">{item.title}</h4>
+                                            <span className="timestamp">{calculateTime(item.postedOn)} DAYS AGO</span>
                                         </div>
-                                        <div className='history' onClick={()=>removeJob()}>
-                                            <FontAwesomeIcon icon={faRemove} />
-                                            <span>Remove</span>
+                                        <span className="text-left">{item.company}</span>
+                                        <div className="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                                            <div className="d-flex flex-column">
+                                                <span className="number3">Location</span> <span className="articles">{item.location}</span>
+                                            </div>
+                                            <div className="d-flex flex-column">
+                                                <span className="number3">Experience</span> <span className="followers">{item.exp} + </span>
+                                            </div>
+                                            <div className="d-flex flex-column">
+                                                <span className="number3">Salary</span> <span className="followers">₹ {item.ctc} LPA</span>
+                                            </div>
+
+                                        </div>
+                                        <div className="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                                            <div className="d-flex flex-column">
+                                                <span className="number3">Description</span> <span className="followers">{item.desc.slice(0, 20)}...</span>
+                                            </div>
+                                            <button className='btn btn-success d-flex' onClick={() => handleApply(item.id)}>Apply</button>
+                                            <button className='btn btn-success d-flex' onClick={() => handleRemoveJobs(item.id)}>Remove</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        ))
-                    }
-
-                </div>
+                        </div>
+                    ))
+                }
             </div>
+            {/* ************************New card UI ********************************************/}
         </div>
        </>
     )

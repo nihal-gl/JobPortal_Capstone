@@ -5,6 +5,8 @@ import "./UpdateJobs.css"
 import { useSelector } from "react-redux";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useParams } from "react-router-dom";
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 const UpdateJobs = () => {
     const { currUserId } = useSelector((state) => state.users.value);
     const param = useParams();
@@ -44,7 +46,7 @@ const UpdateJobs = () => {
             location:location
         }
 
-        updateDoc(doc(db, 'jobs', param.id), jobDetails).then((res) => {
+        updateDoc(doc(db, 'jobs', param), jobDetails).then((res) => {
             console.log("updated");
         }).catch((err)=>{
             console.log(err.message);
@@ -52,51 +54,57 @@ const UpdateJobs = () => {
 
     }
     return (
-        <section className="profile-section">
-            {
-                <div className="form_data">
-                    <div className="form_heading">
-                        <form>
-                            <h2>Update job details</h2>
-                            
-                            <div className="form_input">
-                                <label htmlFor="text">Job Title</label>
-                                <input type="text" name="email" onChange={(e) => setTitle(e.target.value)}
-                                    value={title} id="title" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="text">Company</label>
-                                <input type="text" name="email" onChange={(e) => setCompany(e.target.value)}
-                                    value={company} id="company" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="text">Description</label>
-                                <input type="text" name="email" onChange={(e) => setDesc(e.target.value)}
-                                    value={desc} id="desc" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="text">Experience</label>
-                                <input type="text" name="email" onChange={(e) => setExp(e.target.value)}
-                                    value={exp} id="exp" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="text">CTC</label>
-                                <input type="text" name="email" onChange={(e) => setCtc(e.target.value)}
-                                    value={ctc} id="ctc" />
-                            </div>
-                            <div className="form_input">
-                                <label htmlFor="text">Location</label>
-                                <input type="text" name="email" onChange={(e) => setLocation(e.target.value)}
-                                    value={location} id="location" />
-                            </div>
-                            
-                            <button className="submitBtn" onClick={handleSubmit}>Submit</button>
-                        </form>
-                    </div>
-                </div>
-            }
+        <div className="container mt-8">
+        <section className='d-flex justify-content-between'>
+          <div className="left_data mt-3 p-3" style={{ width: "100%" }}>
+            <h3 className='text-center col-lg-6'>Update Job Details</h3>
+            <Form >
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
+              <label htmlFor="text">Job Title</label>
+                <Form.Control type="text" name="email" onChange={(e) => setTitle(e.target.value)} value={title} id="title" />
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
+              <label htmlFor="text">Company</label>
+            <Form.Control type="text" name="email" onChange={(e) => setCompany(e.target.value)} value={company} id="company" />
+              </Form.Group>
 
+
+
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="text">Description</label>
+                                <Form.Control type="text" name="email" onChange={(e) => setDesc(e.target.value)}
+                                    value={desc} id="desc" />
+                
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="text">Experience</label>
+            <Form.Control type="text" name="email" onChange={(e) => setExp(e.target.value)} value={exp} id="exp" />
+                
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="text">CTC</label>
+                                <Form.Control type="text" name="email" onChange={(e) => setCtc(e.target.value)}
+                                    value={ctc} id="ctc" />
+                
+              </Form.Group>
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+              <label htmlFor="text">Location</label>
+                                <Form.Control type="text" name="email" onChange={(e) => setLocation(e.target.value)}
+                                    value={location} id="location" />
+                
+              </Form.Group>
+              
+              <Button variant="primary" className='col-lg-6'  onClick={handleSubmit} style={{ background: "#4B6587" }} type="submit">
+                Update Job
+              </Button>
+            </Form>
+            
+          </div>
+          
         </section>
+        </div>
+
+         
     )
 }
 

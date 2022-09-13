@@ -1,55 +1,47 @@
 .saved-job-parent-container{
     margin-top: 10%;
+    padding: 80px;
 }
 .saved-job-parent-container .row {
     margin-right: 4px;
-    
+    }
+.saved-job-container {
+    margin-top: 80px;
 }
-.saved-job-card {
-    background-color: #92B4EC;
-    box-shadow: 5px 10px 18px #888888;
-    transition: 0.5s;
-    width: 500px;;
+.saved-job-container .card {
+    width: 100%;
+    border: none;
+    -webkit-box-shadow: 2px 4px 10px 1px rgb(0, 0, 0, 0.47);
+    box-shadow: 2px 4px 10px 1px rgb(201, 201, 201, 0.47);
 }
-.saved-job-parent-container .card:hover {
-    transform: scale(1.05);
+.saved-job-container .stats {
+    background: #f2f5f8 !important;
+    color: #000 !important;
 }
-.saved-job-parent-container .job-title {
-    font-size: 16px;
+.saved-job-container .articles {
+    font-size: 10px;
+    color: #a1aab9;
+}
+.saved-job-container .followers {
+    font-size: 10px;
+    color: #a1aab9;
+}
+.saved-job-container .rating {
+    font-size: 10px;
+    color: #a1aab9;
+}
+.saved-job-container .btn {
+    margin-top: 5px;
+    height: fit-content;
+    font-size: 12px;
+}
+.number3 {
     font-weight: 500;
 }
-.saved-job-parent-container .company-name {
-    max-width: 250px;
-    font-size: 14px;
-}
-.saved-job-parent-container .card-list {
-    list-style: none;
-    padding-left: 0;
-    font-size: 12px;
+.heading-timestamp {
     display: flex;
-    margin-bottom: 0px;
+    justify-content: space-between;
 }
-.saved-job-parent-container .card-list span {
-    margin: 10px;
-    
-}
-.saved-job-parent-container .card-body span {
-    font-size: 12px;
-    margin: 10px;
-}
-.history {
-    margin: 10px;
-    background-color: #c1c6cf;
+.timestamp {
     font-size: 10px;
-    border-radius: 2px;
-    max-width:fit-content;
-    padding: 3px;
-    margin-top: 0px;
-}
-.history span {
-    font-size: 10px;
-}
-.history-save {
-    display: flex;
-    justify-content:end;
 }

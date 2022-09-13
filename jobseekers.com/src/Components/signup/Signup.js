@@ -4,8 +4,11 @@ import Button from 'react-bootstrap/Button'
 import './signup.css';
 import Signimg from './Signimg'
 import { useSignup } from '../../hooks/useSignup';
+import { Navigate } from 'react-router-dom';
+
 
 const Signup = () => {
+  
   const { signup } = useSignup(); // using hook
   const [inputval, setInputval] = useState({
     name: "",
@@ -91,16 +94,17 @@ const Signup = () => {
 
                 <Form.Control type="password" onChange={getdata} name='confirmpassword' placeholder="Confirm Password" />
               </Form.Group>
-              <select onChange={handleRole}>
+              <select className='role' onChange={handleRole}>
                 <option value="user">Select role</option>
                 <option value="admin">Admin</option>
                 <option value="user">User</option>
               </select>
-              <Button variant="primary" className='col-lg-6' onClick={addData} style={{ background: "#92B4EC" }} type="submit">
+              <br></br>
+              <Button variant="primary" className='col-lg-6' onClick={addData} style={{ background: "#4B6587" }} type="submit">
                 Submit
               </Button>
             </Form>
-            <p className='mt-3'>Already Have an Account <span>Sign in</span> </p>
+            
           </div>
           <Signimg></Signimg>
         </section>

@@ -1,30 +1,29 @@
 import './JobsListing.css';
 import { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBriefcase, faIndianRupeeSign, faLocationDot, faFileLines, faClockRotateLeft, faStar } from '@fortawesome/free-solid-svg-icons'
 import { collection, onSnapshot, updateDoc, doc, arrayUnion } from "firebase/firestore";
 import { db } from '../../firebase/config';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import NavbarJobList from './navbarJobList/NavbarJobList';
+import Navbar from '../common/navbar/Navbar';
 
 
 const JobsListing = () => {
     const [jobs, setJobs] = useState([]);
     const [data, setData] = useState([]);
-    const {currUserId} = useSelector((state)=>state.users.value); // use this to get the current user's id
+    const { currUserId } = useSelector((state) => state.users.value); // use this to get the current user's id
 
-    useEffect(()=>{
-        onSnapshot(collection(db, 'jobs'), (querySnapshot)=>{
+    useEffect(() => {
+        onSnapshot(collection(db, 'jobs'), (querySnapshot) => {
             let tempArr = [];
-            querySnapshot.forEach((item)=>{
-                tempArr.push({...item.data(), id: item.id})
+            querySnapshot.forEach((item) => {
+                tempArr.push({ ...item.data(), id: item.id })
             });
             setJobs(tempArr);
             setData(tempArr);
         })
 
-    },[])
+    }, [])
 
     //used for setting the filters
     const [experience, setExperience] = useState(0);
@@ -34,7 +33,7 @@ const JobsListing = () => {
     //utility functions
     const calculateTime = (time) => {
         const givenTime = new Date(time);
-        const currTime = new Date(Date.now())  
+        const currTime = new Date(Date.now())
         const diffDays = parseInt((currTime - givenTime) / (1000 * 60 * 60 * 24), 10);
         return diffDays;
     }
@@ -101,7 +100,7 @@ const JobsListing = () => {
             }
             if (key === 'all') {
                 setJobs(data);
-                setSalaryRadio(key);    
+                setSalaryRadio(key);
             }
         } else {
             setJobs(jobs);
@@ -112,46 +111,39 @@ const JobsListing = () => {
         // add job id in users collection
         updateDoc(doc(db, 'users', currUserId), {
             appliedJobs: arrayUnion(jobId)
-        }).then((res)=>{
+        }).then((res) => {
             console.log("job added to current user");
-        }).catch((err)=> {
+        }).catch((err) => {
             console.log(err);
-        }) 
+        })
         // add user id in jobs collection
         updateDoc(doc(db, 'jobs', jobId), {
             applicants: arrayUnion(currUserId)
-        }).then((res)=>{
+        }).then((res) => {
             console.log("applicant added to current job");
-        }).catch((err)=> {
+        }).catch((err) => {
             console.log(err);
-        }) 
+        })
     }
     const handleSaveJobs = (jobId) => {
         console.log("save to be implemented");
         updateDoc(doc(db, 'users', currUserId), {
             savedJobs: arrayUnion(jobId)
-        }).then((res)=>{
+        }).then((res) => {
             console.log("job added to saved job array");
-        }).catch((err)=> {
+        }).catch((err) => {
             console.log(err);
-        }) 
+
+        })
     }
 
-    // const navigate = useNavigate();
-    // const navigateToApplied = () => {
-    //     navigate('/appliedjobs');
-    // }
-    // const navigateToSaved = () => {
-    //     navigate('/savedjobs');
-    // }
 
 
     return (
         <>
         <NavbarJobList></NavbarJobList>
          <div className='parent-container'>
-            {/* <button onClick={navigateToApplied}>Applied jobs</button>
-            <button onClick={navigateToSaved}>Saved jobs</button> */}
+            
             <div className="filter-container">
                 <h4>Filter</h4>
                 <div>
@@ -161,107 +153,84 @@ const JobsListing = () => {
                     <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "office")}>Office</button>
                 </div>
 
-                <div>
-                    <h6>Experience</h6>
-                    <input type="range" min="0" max="10" value={experience} onChange={(e) => handleExperience(e)} />
-                    <p>Yrs: <span id="demo">{experience}+ </span></p>
-                </div>
-                <div className='salary-div'>
-                    <h6>Salary</h6>
-                    <ul>
-                        <li>
-                            <input type='radio' name='salary' checked={salaryRadio === 'all'} value="all" onChange={(e) => handleCheckBox(e, "all")} /> <span>All</span>
-                        </li>
-                        <li>
-                            <input type='radio' name='salary' checked={salaryRadio === '0to3'} value="0to3" onChange={(e) => handleCheckBox(e, "0to3")} /> <span>0 to 3 LPA</span>
-                        </li>
-                        <li>
-                            <input type='radio' name='salary' checked={salaryRadio === '3to5'} value="3to5" onChange={(e) => handleCheckBox(e, "3to5")} /> 3 to 5 LPA
-                        </li>
-                        <li>
-                            <input type='radio' name='salary' checked={salaryRadio === '5to10'} value="5to10" onChange={(e) => handleCheckBox(e, "5to10")} /> 5 to 10 LPA
-                        </li>
-                        <li>
-                            <input type='radio' name='salary' checked={salaryRadio === '10to15'} value="10to15" onChange={(e) => handleCheckBox(e, "10to15")} /> 10 to 15 LPA
-                        </li>
-                        <li>
-                            <input type='radio' name='salary' checked={salaryRadio === '15plus'} value="15+" onChange={(e) => handleCheckBox(e, "15plus")} /> 15+ LPA
-                        </li>
-                    </ul>
-                </div>
-            </div>
 
-            <div className='joblisting'>
-                <div className="card-container container  ">
-                    <div className="row">
+                    <div>
+                        <h6>Experience</h6>
+                        <input type="range" min="0" max="10" value={experience} onChange={(e) => handleExperience(e)} />
+                        <p>Yrs: <span id="demo">{experience}+ </span></p>
+                    </div>
+                    <div className='salary-div'>
+                        <h6>Salary</h6>
+                        <ul>
+                            <li>
+                                <input type='radio' name='salary' checked={salaryRadio === 'all'} value="all" onChange={(e) => handleCheckBox(e, "all")} /> <span>All</span>
+                            </li>
+                            <li>
+                                <input type='radio' name='salary' checked={salaryRadio === '0to3'} value="0to3" onChange={(e) => handleCheckBox(e, "0to3")} /> <span>0 to 3 LPA</span>
+                            </li>
+                            <li>
+                                <input type='radio' name='salary' checked={salaryRadio === '3to5'} value="3to5" onChange={(e) => handleCheckBox(e, "3to5")} /> 3 to 5 LPA
+                            </li>
+                            <li>
+                                <input type='radio' name='salary' checked={salaryRadio === '5to10'} value="5to10" onChange={(e) => handleCheckBox(e, "5to10")} /> 5 to 10 LPA
+                            </li>
+                            <li>
+                                <input type='radio' name='salary' checked={salaryRadio === '10to15'} value="10to15" onChange={(e) => handleCheckBox(e, "10to15")} /> 10 to 15 LPA
+                            </li>
+                            <li>
+                                <input type='radio' name='salary' checked={salaryRadio === '15plus'} value="15+" onChange={(e) => handleCheckBox(e, "15plus")} /> 15+ LPA
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className='joblisting'>
+                    {/* ****************************** NEW CARD UI ******************************* */}
+                    <div className='user-job-list row text-center'>
                         {
                             jobs.map((item) => (
-                                <div className="card job-listing-card">
-                                    <div className='card-body'>
-                                        <h4 className='job-title'>{item.title}</h4>
-                                        <p className='company-name'>{item.company}</p>
-                                        <ul className='card-list'>
-                                            <li>
-                                                <FontAwesomeIcon icon={faBriefcase} />
-                                                {/* always write years, no plus symbol in json */}
-                                                <span>{item.exp}+ Yrs</span>
-                                            </li>
-                                            <li>
-                                                <FontAwesomeIcon icon={faIndianRupeeSign} />
-                                                {/* always write numbers, lpa will not be added in json */}
-                                                <span>{item.ctc > 0 ? item.ctc + " LPA" : "Not disclosed"}</span>
-                                            </li>
-                                            <li>
-                                                <FontAwesomeIcon icon={faLocationDot} />
-                                                {/* only 2 locations are permitted in json*/}
-                                                <span>{item.location}</span>
-                                            </li>
-                                        </ul>
+                                < div className="col-10 col-md-6"  >
+                                    <div className="card p-2">
+                                        <div className="d-flex align-items-center">
 
-                                        <FontAwesomeIcon icon={faFileLines} />
-                                        <span>{item.desc}</span>
-                                        <br />
-                                        <button onClick={()=>handleApply(item.id)} className='btn btn-primary apply-btn'>Apply</button>
-                                        <div className='history-save'>
-                                            <div className='history'>
-                                                <FontAwesomeIcon icon={faClockRotateLeft} />
-
-                                                <span>
-                                                    {calculateTime(item.postedOn)} DAYS AGO
-                                                </span>
-                                            </div>
-                                            <div className='save' onClick={() => handleSaveJobs(item.id)}>
-                                                <FontAwesomeIcon icon={faStar} className="icon" />
-                                                <span>Save</span>
+                                            <div className="ml-3 w-100"  >
+                                                <div className="heading-timestamp">
+                                                    <h4 className="mb-0 mt-0 textLeft">{item.title}</h4>
+                                                    <span className="timestamp">{calculateTime(item.postedOn)} DAYS AGO</span>
+                                                </div>
+                                                <span className="text-left">{item.company}</span>
+                                                <div className="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                                                    <div className="d-flex flex-column">
+                                                        <span className="number3">Location</span> <span className="articles">{item.location}</span>
+                                                    </div>
+                                                    <div className="d-flex flex-column">
+                                                        <span className="number3">Experience</span> <span className="followers">{item.exp} + </span>
+                                                    </div>
+                                                    <div className="d-flex flex-column">
+                                                        <span className="number3">Salary</span> <span className="followers">₹ {item.ctc} LPA</span>
+                                                    </div>
+                                                </div>
+                                                <div className="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                                                    <div className="d-flex flex-column">
+                                                        <span className="number3">Description</span> <span className="followers">{item.desc.slice(0, 20)}...</span>
+                                                    </div>
+                                                    <button onClick={() => handleApply(item.id)} className='btn btn-success apply-btn'>Apply</button>
+                                                    <button className='btn btn-success apply-btn' onClick={() => handleSaveJobs(item.id)}>Save for later</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             ))
+
                         }
                     </div>
+                    {/* ****************************** NEW CARD UI ******************************* */}
                 </div>
             </div>
 
-            <div className="featured-container">
-                <p className="featured-heading">Featured Opportunities</p>
-                <img alt='' src='https://img.naukimg.com/fc_images/v2/63124.gif'></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/103944.gif"></img>
-                <img alt='' src='https://img.naukimg.com/fc_images/v2/41373.gif'></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/24468.gif"></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/15001.gif"></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/479215.gif"></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/13512.gif"></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/16987.gif"></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/100007.gif"></img>
-                <img alt='' src="https://img.naukimg.com/fc_images/v2/121866.gif"></img>
-            </div>
-
-        </div>
-        
         </>
-       
+
     )
 }
 export default JobsListing;
