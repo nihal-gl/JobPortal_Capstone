@@ -39,7 +39,7 @@ const Sidebar = () => {
                     </li>
                     <li>
                         <i className="fa fa-solid fa-user icon"></i>
-                        <NavLink className="nav-link" to="/userList"><span>List of users</span></NavLink>
+                        <NavLink className="nav-link" to="/userlist"><span>List of users</span></NavLink>
 
                     </li>
 
