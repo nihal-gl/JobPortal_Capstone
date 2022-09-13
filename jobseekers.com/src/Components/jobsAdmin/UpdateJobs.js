@@ -4,10 +4,10 @@ import { db } from "../../firebase/config";
 import "./UpdateJobs.css"
 import { useSelector } from "react-redux";
 import { collection, onSnapshot } from "firebase/firestore";
-
+import { useParams } from "react-router-dom";
 const UpdateJobs = () => {
     const { currUserId } = useSelector((state) => state.users.value);
-
+    const param = useParams();
     const [company, setCompany] = useState();
     const [ctc, setCtc] = useState();
     const [desc, setDesc] = useState();
@@ -20,7 +20,7 @@ const UpdateJobs = () => {
         onSnapshot(collection(db, 'jobs'), (users) => {
             // let tempArr = [];
             users.forEach((user) => {
-                if (user.id === currUserId) {
+                if (user.id === param.id) {
                     setTitle(user.data().title);
                     setCompany(user.data().company);
                     setCtc(user.data().ctc);
@@ -44,7 +44,7 @@ const UpdateJobs = () => {
             location:location
         }
 
-        updateDoc(doc(db, 'jobs', currUserId), jobDetails).then((res) => {
+        updateDoc(doc(db, 'jobs', param.id), jobDetails).then((res) => {
             console.log("updated");
         }).catch((err)=>{
             console.log(err.message);
