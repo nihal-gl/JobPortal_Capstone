@@ -30,7 +30,7 @@ const Footer = () => {
 
     return (
         <>
-            <footer className="footer-section">
+            <footer id="footer-section">
                 <div className="container resize">
                     <div className="footer-cta pt-5 pb-5">
                         <div className="row">
@@ -103,7 +103,7 @@ const Footer = () => {
                                 </div>
                             </div>
                             <div className="col-xl-4 col-lg-4 col-md-6 mb-50">
-                                <div className="footer-widget">
+                                <div className="footer-widget" id="pricing">
                                     <div className="footer-widget-heading">
                                         <h3>Subscribe</h3>
                                     </div>

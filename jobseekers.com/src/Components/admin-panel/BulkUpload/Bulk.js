@@ -87,7 +87,7 @@ function Bulk() {
                   onChange={handleFile} required></input>
                 {excelFileError && <div className='text-danger'
                   style={{ marginTop: 5 + 'px' }}>{excelFileError}</div>}
-                <button type='submit' className='btn btn-success'
+                <button type='submit' className='btn btn-success adminButtons'
                   style={{ marginTop: 5 + 'px' }}>Submit</button>
               </form>
             </div>
@@ -116,7 +116,7 @@ function Bulk() {
                       <Data excelData={excelData} />
                     </tbody>
                   </table>
-                  <button className='btn btn-success' onClick={addJobs}>Add Job</button>
+                  <button className='btn btn-success adminButtons' onClick={addJobs}>Add Job</button>
                 </div>
               )}
             </div>

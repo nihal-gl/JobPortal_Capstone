@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { onSnapshot, collection } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import './Applicants.css'
+import Sidebar from "../admin-panel/adminComponents/sidebar/Sidebar";
+import Navbar from "../admin-panel/adminComponents/navbar/Navbar";
 const Applicants = () => {
     const params = useParams();
     const [data, setData] = useState([]);
@@ -31,6 +33,11 @@ const Applicants = () => {
     }, [])
 
     return (
+       <>
+       <div className="applicantsHome">
+        <Navbar></Navbar>
+        <div className="applicantsContainer">
+            <Sidebar></Sidebar>
         <div className="container applicants-div">
             <table class="table table-striped">
                 <thead>
@@ -61,6 +68,9 @@ const Applicants = () => {
 
             </table>
         </div>
+        </div>
+       </div>
+       </>
     )
 }
 export default Applicants

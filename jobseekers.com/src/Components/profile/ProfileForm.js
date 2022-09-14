@@ -8,6 +8,7 @@ import Navbar from "../common/navbar/Navbar";
 import { FaOptinMonster } from "react-icons/fa";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import NavbarJobList from "../jobListing/navbarJobList/NavbarJobList";
 const ProfileForm = () => {
     const { currUserId } = useSelector((state) => state.users.value);
 
@@ -76,8 +77,9 @@ const ProfileForm = () => {
     }
     return (
        <>
-       <Navbar></Navbar>
-        <div className="container mt-8">
+       <NavbarJobList></NavbarJobList>
+       <div className="updateprofilebox">
+       <div className="container mt-8">
         <section className='d-flex justify-content-between'>
           <div className="left_data mt-3 p-3" style={{ width: "100%" }}>
             <h3 className='text-center col-lg-6'>Update Job Details</h3>
@@ -86,8 +88,10 @@ const ProfileForm = () => {
                 <label htmlFor="photo">Photograph</label>
                 <Form.Control type="text" name="photo" onChange={(e) => setPhoto(e.target.value)} value={photo} id="job_id" />
               </Form.Group>
-                <label htmlFor="name">Name</label>
+               <Form.Group className="mb-3 col-lg-6">
+               <label htmlFor="name">Name</label>
                 <Form.Control type="text" name="name" onChange={(e) => setName(e.target.value)} value={name} id="name" />
+               </Form.Group>
               <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
               </Form.Group>
               <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
@@ -155,6 +159,8 @@ const ProfileForm = () => {
           
         </section>
         </div>
+       </div>
+
        </>
     )
 }

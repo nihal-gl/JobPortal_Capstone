@@ -5,3 +5,8 @@ body{
     overflow-x: hidden;
     font-style: normal;
 }
+
+.adminButtons{
+    background-color: #4B6587;
+    color: white;
+}

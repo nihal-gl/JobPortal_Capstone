@@ -25,10 +25,11 @@ const JobList = () => {
 
         <div className='menu-tab d-flex justify-content-around'>
 
-          <button className='btn btn-warning w-20' onClick={() => filterItem('WebDev')}>Web Dev</button>
-          <button className='btn btn-warning w-20' onClick={() => filterItem('SDE')}>SDE</button>
-          <button className='btn btn-warning w-10' onClick={() => filterItem('testing')}>Testing</button>
-          <button className='btn btn-warning w-10' onClick={() => filterItem('ios')}>IOS</button>
+          <button className='btn btn-warning w-20 button-73' onClick={() => filterItem('WebDev')}>Web Dev</button>
+          <button className='btn btn-warning w-20 button-73' onClick={() => filterItem('SDE')}>SDE</button>
+          <button className='btn btn-warning w-10 button-73' onClick={() => filterItem('testing')}>Testing</button>
+          <button className='btn btn-warning w-10 button-73' onClick={() => filterItem('ios')}>IOS</button>
+          
 
         </div>
 
