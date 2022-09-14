@@ -1,9 +1,11 @@
 .applied-job-parent-container {
     padding: 80px;
 }
-.applied-job-container {
-    margin-top: 80px;
+.applied-job-parent-container h1 {
+    margin-top: 100px;
+    margin-left: 20px;
 }
+
 .applied-job-container .card {
     width: 100%;
     border: none;
@@ -27,6 +29,7 @@
     color: #a1aab9;
 }
 .applied-job-container .btn {
+    background-color: #4B6587;
     margin-top: 5px;
     height: fit-content;
     font-size: 12px;

@@ -66,7 +66,7 @@ const JobsAdmin = () => {
             <div className='admin-job-list row text-center'>
                 {
                     jobs.map((item) => (
-                        < div className="col-10 col-md-4 mt-5"  >
+                        < div className="col-10 col-md-6 mt-5"  >
                             <div className="card p-2">
                                 <div className="d-flex align-items-center">
 
