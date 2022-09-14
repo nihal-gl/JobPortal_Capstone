@@ -48,7 +48,7 @@ const UpdateJobs = () => {
             location:location
         }
 
-        updateDoc(doc(db, 'jobs', param), jobDetails).then((res) => {
+        updateDoc(doc(db, 'jobs', param.id), jobDetails).then((res) => {
             console.log("updated");
         }).catch((err)=>{
             console.log(err.message);
