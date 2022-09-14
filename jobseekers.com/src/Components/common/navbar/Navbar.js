@@ -40,7 +40,13 @@ const Navbar = () => {
               <NavLink className="nav-link " to="/explorejobs" >Jobs</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/updateprofile" >Update Profile</NavLink>
+              <NavLink className="nav-link" to="#footer-section" >Contact Us</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="#subscribe" >Job Updates</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/team" >Team</NavLink>
             </li>
 
           </ul>
@@ -58,7 +64,7 @@ const Navbar = () => {
           {currRole ?
           <ul className="navbar-nav flex-row ml-md-auto d-none d-md-flex">
             <li className='nav-item'>
-              <button className="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" onClick={logOut}>Logout</button>
+              <button className="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" role="button" onClick={logOut}>Logout</button>
             </li>
             {console.log(currRole)}
           </ul>

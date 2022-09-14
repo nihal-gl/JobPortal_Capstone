@@ -5,6 +5,7 @@ import './signup.css';
 import Signimg from './Signimg'
 import { useSignup } from '../../hooks/useSignup';
 import { Navigate } from 'react-router-dom';
+import Navbar from '../common/navbar/Navbar';
 
 
 const Signup = () => {
@@ -70,6 +71,7 @@ const Signup = () => {
 
   return (
     <>
+    <Navbar></Navbar>
       <div className="container mt-8 signup">
         <section className='d-flex justify-content-between'>
           <div className="left_data mt-3 p-3" style={{ width: "100%" }}>

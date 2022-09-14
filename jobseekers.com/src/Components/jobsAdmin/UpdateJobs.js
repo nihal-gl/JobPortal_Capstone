@@ -7,6 +7,8 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Navbar from "../admin-panel/adminComponents/navbar/Navbar";
+import Sidebar from "../admin-panel/adminComponents/sidebar/Sidebar";
 const UpdateJobs = () => {
     const { currUserId } = useSelector((state) => state.users.value);
     const param = useParams();
@@ -54,7 +56,12 @@ const UpdateJobs = () => {
 
     }
     return (
-        <div className="container mt-8">
+       <>
+       <div className="updateJobHome">
+        <Navbar></Navbar>
+        <div className="updateJobContainer">
+          <Sidebar></Sidebar>
+        <div className="container mt-8 updateJobBox">
         <section className='d-flex justify-content-between'>
           <div className="left_data mt-3 p-3" style={{ width: "100%" }}>
             <h3 className='text-center col-lg-6'>Update Job Details</h3>
@@ -94,7 +101,7 @@ const UpdateJobs = () => {
                 
               </Form.Group>
               
-              <Button variant="primary" className='col-lg-6'  onClick={handleSubmit} style={{ background: "#4B6587" }} type="submit">
+              <Button variant="primary" className='col-lg-6 adminButtons'  onClick={handleSubmit} style={{ background: "#4B6587" }} type="submit">
                 Update Job
               </Button>
             </Form>
@@ -103,6 +110,9 @@ const UpdateJobs = () => {
           
         </section>
         </div>
+        </div>
+       </div>
+       </>
 
          
     )

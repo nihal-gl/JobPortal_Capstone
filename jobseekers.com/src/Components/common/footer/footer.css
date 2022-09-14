@@ -3,10 +3,9 @@ ul {
     padding: 0px;
 
 }
-.footer-section {
+#footer-section {
   background: #20232a;
   position: relative;
-  margin-top: 50px;
   margin-bottom: 0;
 }
 .footer-cta {
