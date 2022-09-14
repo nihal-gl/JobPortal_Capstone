@@ -69,93 +69,94 @@ const ProfileForm = () => {
 
         updateDoc(doc(db, 'users', currUserId), profileDetails).then((res) => {
             console.log("updated");
-        }).catch((err)=>{
+            alert("Updated")
+        }).catch((err) => {
             console.log(err.message);
         })
 
     }
     return (
-       <>
-       <Navbar></Navbar>
-        <div className="container mt-8">
-        <section className='d-flex justify-content-between'>
-          <div className="left_data mt-3 p-3" style={{ width: "100%" }}>
-            <h3 className='text-center col-lg-6'>Update Job Details</h3>
-            <Form >
-              <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
-                <label htmlFor="photo">Photograph</label>
-                <Form.Control type="text" name="photo" onChange={(e) => setPhoto(e.target.value)} value={photo} id="job_id" />
-              </Form.Group>
-                <label htmlFor="name">Name</label>
-                <Form.Control type="text" name="name" onChange={(e) => setName(e.target.value)} value={name} id="name" />
-              <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
-              </Form.Group>
-              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
-              <label htmlFor="text">Job Title</label>
+        <>
+            <Navbar></Navbar>
+            <div className="container mt-8">
+                <section className='d-flex justify-content-between'>
+                    <div className="left_data mt-3 p-3" style={{ width: "100%" }}>
+                        <h3 className='text-center col-lg-6'>Update Job Details</h3>
+                        <Form >
+                            <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
+                                <label htmlFor="photo">Photograph</label>
+                                <Form.Control type="text" name="photo" onChange={(e) => setPhoto(e.target.value)} value={photo} id="job_id" />
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
+                                <label htmlFor="name">Name</label>
+                                <Form.Control type="text" name="name" onChange={(e) => setName(e.target.value)} value={name} id="name" />
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+                                <label htmlFor="text">Job Title</label>
                                 <Form.Control type="text" name="email" onChange={(e) => setTitle(e.target.value)}
                                     value={title} id="title" />
-              </Form.Group>
-              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
-              <label htmlFor="phone">Phone</label>
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+                                <label htmlFor="phone">Phone</label>
                                 <Form.Control type="text" name="phone" onChange={(e) => setPhone(e.target.value)}
                                     value={phone} id="phone" />
-              </Form.Group>
-              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
-              <label htmlFor="experience">Experience</label>
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+                                <label htmlFor="experience">Experience</label>
                                 <Form.Control type="text" name="experience" onChange={(e) => setExp(e.target.value)}
                                     value={exp} id="experience" />
-              </Form.Group>
-              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
-              <label htmlFor="education">Education</label>
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+                                <label htmlFor="education">Education</label>
                                 <Form.Control type="text" name="education" onChange={(e) => setEdu(e.target.value)}
                                     value={edu} id="education" />
-              </Form.Group>
-              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
-              <label htmlFor="projects">Projects</label>
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+                                <label htmlFor="projects">Projects</label>
                                 <Form.Control type="text" name="projects" onChange={(e) => setProj(e.target.value)}
                                     value={proj} id="projects" />
-              </Form.Group>
-              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
-              <label htmlFor="skills">Skills</label>
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+                                <label htmlFor="skills">Skills</label>
                                 <Form.Control type="text" name="skills" onChange={(e) => setSkill(e.target.value)}
                                     value={skill} id="skills" />
-              </Form.Group>
-              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
-              <label htmlFor="languages">Languages</label>
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+                                <label htmlFor="languages">Languages</label>
                                 <Form.Control type="text" name="languages" onChange={(e) => setLang(e.target.value)}
                                     value={lang} id="languages" />
-              </Form.Group>
-              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
-              <label htmlFor="linkedin">LinkedIn</label>
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+                                <label htmlFor="linkedin">LinkedIn</label>
                                 <Form.Control type="text" name="linkedin" onChange={(e) => setLinkedin(e.target.value)}
                                     value={linkedin} id="linkedin" />
-              </Form.Group>
-              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
-              <label htmlFor="tweeter">Twitter</label>
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+                                <label htmlFor="tweeter">Twitter</label>
                                 <Form.Control type="text" name="tweeter" onChange={(e) => settwitter(e.target.value)}
                                     value={twitter} id="tweeter" />
-              </Form.Group>
-              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
-              <label htmlFor="github">Github</label>
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+                                <label htmlFor="github">Github</label>
                                 <Form.Control type="text" name="github" onChange={(e) => setGithub(e.target.value)}
                                     value={github} id="github" />
-              </Form.Group>
-              <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
-              <label htmlFor="resume">Resume (Google drive link)</label>
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
+                                <label htmlFor="resume">Resume (Google drive link)</label>
                                 <Form.Control type="text" name="resume" onChange={(e) => setResume(e.target.value)}
                                     value={resume} id="resume" />
-              </Form.Group>
-              
-              <Button variant="primary" className='col-lg-6'  onClick={handleSubmit} style={{ background: "#4B6587" }} type="submit">
-                Update Profile
-              </Button>
-            </Form>
-            
-          </div>
-          
-        </section>
-        </div>
-       </>
+                            </Form.Group>
+
+                            <Button variant="primary" className='col-lg-6' onClick={handleSubmit} style={{ background: "#4B6587" }} type="submit">
+                                Update Profile
+                            </Button>
+                        </Form>
+
+                    </div>
+
+                </section>
+            </div>
+        </>
     )
 }
 

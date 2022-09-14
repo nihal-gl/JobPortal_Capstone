@@ -11,6 +11,7 @@ const AppliedJobs = () => {
 
     //fetch
     let tempArr = [];
+    let arr = [];
     useEffect(() => {
         onSnapshot(collection(db, 'users'), (users) => {
             users.forEach((user) => {
@@ -19,7 +20,7 @@ const AppliedJobs = () => {
             });
         })
         onSnapshot(collection(db, 'jobs'), (totalJobs) => {
-            let arr = [];
+            
             totalJobs.forEach((item) => {
                 tempArr.forEach(job => {
                     if (item.id === job) {
@@ -29,7 +30,7 @@ const AppliedJobs = () => {
             })
             setData(arr);
         })
-    }, [tempArr])
+    }, [arr])
 
     const calculateTime = (time) => {
         const givenTime = new Date(time);
