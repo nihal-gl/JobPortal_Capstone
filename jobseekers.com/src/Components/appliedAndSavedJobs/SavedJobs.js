@@ -60,8 +60,8 @@ const SavedJobs = () => {
         updateDoc(doc(db, 'users', currUserId), {
             savedJobs: arrayRemove(jobId)
         }).then((res) => {
-            console.log("job removed from applied job array");
-            alert("Job removed from applied jobs")
+            console.log("job removed from saved job array");
+            alert("Job removed from saved jobs")
         }).catch((err) => {
             console.log(err);
         })

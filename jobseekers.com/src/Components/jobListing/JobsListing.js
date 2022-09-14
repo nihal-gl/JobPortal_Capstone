@@ -113,6 +113,7 @@ const JobsListing = () => {
             appliedJobs: arrayUnion(jobId)
         }).then((res) => {
             console.log("job added to current user");
+            alert("Applied job successfully")
         }).catch((err) => {
             console.log(err);
         })
@@ -131,6 +132,7 @@ const JobsListing = () => {
             savedJobs: arrayUnion(jobId)
         }).then((res) => {
             console.log("job added to saved job array");
+            alert("Saved for later")
         }).catch((err) => {
             console.log(err);
 
@@ -140,23 +142,23 @@ const JobsListing = () => {
 
 
     return (
-        <>
-        <NavbarJobList></NavbarJobList>
-         <div className='parent-container'>
-            
-            <div className="filter-container">
-                <h4>Filter</h4>
-                <div>
-                    <h6>Location</h6>
-                    <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "all")}>All</button>
-                    <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "remote")}>Remote</button>
-                    <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "office")}>Office</button>
-                </div>
+        <div className='container'>
+            <NavbarJobList></NavbarJobList>
+            <div className='parent-container row'>
+
+                <div className="filter-container col-4">
+                    <h4>Filter</h4>
+                    <div>
+                        <h6>Location</h6>
+                        <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "all")}>All</button>
+                        <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "remote")}>Remote</button>
+                        <button className='filter-btn btn btn-primary' onClick={(e) => handleLocation(e, "office")}>Office</button>
+                    </div>
 
 
                     <div>
                         <h6>Experience</h6>
-                        <input type="range" min="0" max="10" value={experience} onChange={(e) => handleExperience(e)} />
+                        <input className='slider' type="range" min="0" max="10" value={experience} onChange={(e) => handleExperience(e)} />
                         <p>Yrs: <span id="demo">{experience}+ </span></p>
                     </div>
                     <div className='salary-div'>
@@ -184,15 +186,14 @@ const JobsListing = () => {
                     </div>
                 </div>
 
-                <div className='joblisting'>
+                <div className='joblisting col-8'>
                     {/* ****************************** NEW CARD UI ******************************* */}
                     <div className='user-job-list row text-center'>
                         {
                             jobs.map((item) => (
-                                < div className="col-10 col-md-6"  >
+                                < div className="col-md-12"  >
                                     <div className="card p-2">
                                         <div className="d-flex align-items-center">
-
                                             <div className="ml-3 w-100"  >
                                                 <div className="heading-timestamp">
                                                     <h4 className="mb-0 mt-0 textLeft">{item.title}</h4>
@@ -229,7 +230,7 @@ const JobsListing = () => {
                 </div>
             </div>
 
-        </>
+        </div>
 
     )
 }

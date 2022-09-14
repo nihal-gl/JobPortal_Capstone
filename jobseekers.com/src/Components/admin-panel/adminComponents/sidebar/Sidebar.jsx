@@ -81,7 +81,7 @@ const Sidebar = () => {
                     <p className="title">ADMIN</p>
                     <li>
                         <i className="fa fa-solid fa-right-from-bracket icon"></i>
-                        <NavLink className="nav-link" to="/adminpanel"><span>Profile</span></NavLink>
+                        <NavLink className="nav-link" to="/adminpanel"><span>Dashboard</span></NavLink>
                     </li>
                     <li>
                         <i className="fa fa-solid fa-right-from-bracket icon"></i>
