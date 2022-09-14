@@ -45,3 +45,12 @@
 .number3 {
     font-weight: 500;
 }
+
+/* <button class="button-73" role="button">Button 73</button> */
+
+/* CSS */
+.button-73 {
+ background-color: #4B6587;
+ color: white;
+
+}

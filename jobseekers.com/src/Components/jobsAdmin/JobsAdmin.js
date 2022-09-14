@@ -91,9 +91,9 @@ const JobsAdmin = () => {
                                             <div className="d-flex flex-column">
                                                 <span className="number3">Description</span> <span className="followers">{item.desc.slice(0, 20)}...</span>
                                             </div>
-                                            <button className='btn btn-success apply-btn' onClick={() => handleUpdate(item.id)}>Update</button>
-                                            <button className='btn btn-success apply-btn' onClick={() => viewApplicants(item.id)}>View Applicants</button>
-                                            <button className='btn btn-success apply-btn' onClick={() => handleDelete(item.id)}>Delete</button>
+                                            <button className='btn btn-success apply-btn adminButtons' onClick={() => handleUpdate(item.id)}>Update</button>
+                                            <button className='btn btn-success apply-btn adminButtons' onClick={() => viewApplicants(item.id)}>View Applicants</button>
+                                            <button className='btn btn-success apply-btn adminButtons' onClick={() => handleDelete(item.id)}>Delete</button>
                                         </div>
                                     </div>
                                 </div>

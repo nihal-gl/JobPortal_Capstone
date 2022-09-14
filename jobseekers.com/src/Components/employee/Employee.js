@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { onSnapshot, collection } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import Navbar from "../common/navbar/Navbar";
+import NavbarJobList from "../jobListing/navbarJobList/NavbarJobList";
 
 export const Employee = () => {
 
@@ -48,7 +49,7 @@ export const Employee = () => {
 
   return (
     isLoading ? <h2>Loading...</h2> : <>
-    <Navbar></Navbar>
+    <NavbarJobList></NavbarJobList>
       <div className="container emp-profile">
         <form method="">
           <div className="row">
@@ -83,14 +84,16 @@ export const Employee = () => {
             {/* //left side */}
             <div className="col-md-4">
               <div className="skils">
-                <h4><DiCssTricks />  Skills</h4>
+                <h4 className="text-center"> Skills</h4>
+                <hr/>
                 <p className="skils-info">
                   {userData.skill}
                 </p>
               </div>
               <br />
               <div className="profile-work">
-                <h4>My Social Profile</h4>
+                <h4 className="text-center">My Social Profile</h4>
+                <hr/>
                 <a className="fa" target='_blank' href={userData.linkedin}>
                   <FaLinkedinIn />
                 </a>

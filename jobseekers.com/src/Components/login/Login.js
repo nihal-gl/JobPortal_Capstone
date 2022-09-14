@@ -9,6 +9,12 @@ import {setUserId, setUserRole} from '../../useSlice';
 import { useSignin } from '../../hooks/useSignin'; // sign in hook
 import { getDocs, collection, query, where } from 'firebase/firestore';
 import { db } from '../../firebase/config';
+import Navbar from '../common/navbar/Navbar'
+
+//notify my user
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -115,7 +121,7 @@ const Login = () => {
 
     return (
         <>
-        
+        <Navbar></Navbar>
             <div className="container loginContainer">
                 <section className='d-flex justify-content-between'>
                     <div className="left_data mt-3 p-5" style={{ width: "100%" }}>

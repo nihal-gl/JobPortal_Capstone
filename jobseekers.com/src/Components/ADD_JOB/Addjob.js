@@ -81,7 +81,7 @@ const Addjob = () => {
                   <label>Location</label>
                   <Form.Control type="text" onChange={getdata} name='location' placeholder="Enter Job Location" />
                 </Form.Group>
-                <Button variant="primary" className='col-lg-6' onClick={handleSubmit} style={{ background: "#92B4EC" }} type="submit">
+                <Button  className='col-lg-6 adminButtons' onClick={handleSubmit}  type="submit">
                   Add Job
                 </Button>
               </Form>
