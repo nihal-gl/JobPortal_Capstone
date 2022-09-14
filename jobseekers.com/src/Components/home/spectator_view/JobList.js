@@ -29,7 +29,7 @@ const JobList = () => {
           <button className='btn btn-warning w-20 button-73' onClick={() => filterItem('SDE')}>SDE</button>
           <button className='btn btn-warning w-10 button-73' onClick={() => filterItem('testing')}>Testing</button>
           <button className='btn btn-warning w-10 button-73' onClick={() => filterItem('ios')}>IOS</button>
-          
+
 
         </div>
 
@@ -54,7 +54,7 @@ const JobList = () => {
                           <span className="number3">Experience</span> <span className="followers">{experience}</span> </div>
                         <div className="d-flex flex-column">
                         </div>
-                        <button className='btn btn-success d-flex' >View</button>
+                        <button className='btn btn-success d-flex adminButtons' >View</button>
                       </div>
 
                     </div>
@@ -69,12 +69,20 @@ const JobList = () => {
 
       {/* ---------------------------------------------------------JOB SEARCH */}
 
+
       <div className='jobSearch'>
         <hr />
         <div className='text-center'>
+          <div className="search-box">
+            <button className="btn-search"><i className="fa fas fa-search"></i></button>
+            <input type="text" className="input-search" placeholder="Type to Search..." onChange={e => setQuery(e.target.value)} />
+            <p> Search by location or company</p>
+          </div>
+        </div>
+        {/* <div className='text-center'>
           <input type="text" placeholder='search...' onChange={e => setQuery(e.target.value)} />
           <p> Search by location or company</p>
-        </div>
+        </div> */}
         <hr />
 
         <div className='jobDescContainer row text-center'>
@@ -96,7 +104,7 @@ const JobList = () => {
                             <span className="number3">Experience</span> <span className="followers">{experience}</span> </div>
                           <div className="d-flex flex-column">
                           </div>
-                          <button className='btn btn-success d-flex' >View</button>
+                          <button className='btn btn-success d-flex adminButtons' >View</button>
                         </div>
 
                       </div>
