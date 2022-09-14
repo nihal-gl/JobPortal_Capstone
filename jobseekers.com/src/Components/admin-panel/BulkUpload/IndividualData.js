@@ -8,6 +8,7 @@ export const IndividualData = ({individualExcelData}) => {
             <td>{individualExcelData.exp}</td>
             <td>{individualExcelData.location}</td>
             <td>{individualExcelData.title}</td>
+            <td>{individualExcelData.desc}</td>
         
         </>
     )
