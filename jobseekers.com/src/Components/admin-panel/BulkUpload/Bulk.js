@@ -57,6 +57,7 @@ function Bulk() {
   }
 
   const addJobs = () => {
+    console.log(excelData)
     excelData.forEach(async (item) => {
       const res = await addDoc(collection(db, "jobs"), {
         title: item.title,
@@ -109,6 +110,7 @@ function Bulk() {
                         <th scope='col'>Experience</th>
                         <th scope='col'>Location</th>
                         <th scope='col'>Title</th>
+                        <th scope='col'>Description</th>
 
                       </tr>
                     </thead>
